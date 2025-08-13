@@ -1,0 +1,1538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LYCEE DE NYANZA - Quality Education</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#5D5CDE',
+                        secondary: '#4338CA',
+                        accent: '#059669',
+                        warning: '#F59E0B',
+                        dark: '#1F2937',
+                        light: '#F8FAFC'
+                    },
+                    animation: {
+                        'slide-in': 'slideIn 0.6s ease-out',
+                        'fade-in': 'fadeIn 0.8s ease-out',
+                        'fade-up': 'fadeUp 0.6s ease-out',
+                        'scale-in': 'scaleIn 0.5s ease-out',
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        slideIn: {
+                            '0%': { opacity: '0', transform: 'translateX(-50px)' },
+                            '100%': { opacity: '1', transform: 'translateX(0)' }
+                        },
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' }
+                        },
+                        fadeUp: {
+                            '0%': { opacity: '0', transform: 'translateY(30px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' }
+                        },
+                        scaleIn: {
+                            '0%': { opacity: '0', transform: 'scale(0.9)' },
+                            '100%': { opacity: '1', transform: 'scale(1)' }
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-20px)' }
+                        }
+                    },
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, #5D5CDE 0%, #4338CA 50%, #3730A3 100%);
+        }
+        
+        .section-gradient {
+            background: linear-gradient(135deg, #F8FAFC 0%, #F1F5F9 100%);
+        }
+        
+        .card-hover {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .form-step {
+            display: none;
+            animation: fadeIn 0.4s ease-in;
+        }
+        
+        .form-step.active {
+            display: block;
+        }
+        
+        .nav-blur {
+            backdrop-filter: blur(20px);
+            background-color: rgba(255, 255, 255, 0.95);
+        }
+        
+        .text-shadow {
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #5D5CDE, #4338CA);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .pattern-dots {
+            background-image: radial-gradient(circle, rgba(93, 92, 222, 0.1) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+        
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* Dark mode styles */
+        .dark .nav-blur {
+            background-color: rgba(17, 24, 39, 0.95);
+        }
+        
+        .dark .section-gradient {
+            background: linear-gradient(135deg, #111827 0%, #1F2937 100%);
+        }
+    </style>
+</head>
+<body class="bg-light dark:bg-gray-900 text-gray-800 dark:text-gray-100">
+    <!-- Navigation -->
+    <nav class="nav-blur fixed w-full top-0 z-50 border-b border-gray-200 dark:border-gray-700">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center">
+                        <img src="https://i.ibb.co/hxHgzKxb/image.png" alt="LYCEE DE NYANZA Logo" class="h-10 w-10 mr-3 rounded-full">
+                        <div class="text-xl font-bold gradient-text">LYCEE DE NYANZA</div>
+                    </div>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-1">
+                        <a href="#home" class="nav-link px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 hover:bg-primary/10 hover:text-primary">HOME</a>
+                        <a href="#about" class="nav-link px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 hover:bg-primary/10 hover:text-primary">ABOUT</a>
+                        <a href="#director" class="nav-link px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 hover:bg-primary/10 hover:text-primary">DIRECTOR</a>
+                        <a href="#courses" class="nav-link px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 hover:bg-primary/10 hover:text-primary">COURSES</a>
+                        <a href="#admission" class="nav-link px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 hover:bg-primary/10 hover:text-primary">ADMISSION</a>
+                        <a href="#contact" class="nav-link px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 hover:bg-primary/10 hover:text-primary">CONTACT</a>
+                        <a href="#apply" class="bg-primary text-white px-6 py-2 rounded-lg text-sm font-medium hover:bg-secondary transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 ml-4">APPLY NOW</a>
+                    </div>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="md:hidden hidden border-t border-gray-200 dark:border-gray-700">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="#home" class="block px-3 py-2 rounded-lg text-base font-medium hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">HOME</a>
+                <a href="#about" class="block px-3 py-2 rounded-lg text-base font-medium hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">ABOUT</a>
+                <a href="#director" class="block px-3 py-2 rounded-lg text-base font-medium hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">DIRECTOR</a>
+                <a href="#courses" class="block px-3 py-2 rounded-lg text-base font-medium hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">COURSES</a>
+                <a href="#admission" class="block px-3 py-2 rounded-lg text-base font-medium hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">ADMISSION</a>
+                <a href="#contact" class="block px-3 py-2 rounded-lg text-base font-medium hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">CONTACT</a>
+                <a href="#apply" class="block bg-primary text-white px-3 py-2 rounded-lg text-base font-medium mt-4">APPLY NOW</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="pt-16">
+        <div class="hero-gradient text-white py-20 lg:py-28 relative overflow-hidden">
+            <!-- Background Elements -->
+            <div class="absolute inset-0 opacity-10">
+                <div class="absolute top-10 left-10 w-72 h-72 bg-white rounded-full animate-pulse-slow"></div>
+                <div class="absolute bottom-20 right-20 w-96 h-96 bg-white rounded-full animate-pulse-slow" style="animation-delay: 2s;"></div>
+                <div class="absolute top-1/2 right-10 w-48 h-48 bg-white rounded-full animate-pulse-slow" style="animation-delay: 4s;"></div>
+            </div>
+            
+            <div class="pattern-dots absolute inset-0 opacity-30"></div>
+            
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+                    <!-- Left Content -->
+                    <div class="space-y-8 animate-slide-in">
+                        <div class="space-y-6">
+                            <div class="inline-flex items-center bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 border border-white/20">
+                                <span class="text-yellow-300 font-semibold text-sm">🎓 Excellence in Education</span>
+                            </div>
+                            <h1 class="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight text-shadow">
+                                Welcome to 
+                                <span class="block text-yellow-300 gradient-text">LYCEE DE NYANZA</span>
+                            </h1>
+                            <p class="text-lg md:text-xl lg:text-2xl text-blue-100 leading-relaxed max-w-2xl">
+                                Empowering minds, shaping futures through innovative education and character development in the heart of Rwanda.
+                            </p>
+                        </div>
+                        
+                        <!-- Call to Action Buttons -->
+                        <div class="flex flex-col sm:flex-row gap-4 lg:gap-6">
+                            <a href="#apply" class="group bg-white text-primary px-8 py-4 rounded-2xl font-semibold hover:bg-gray-100 transition-all duration-300 text-center shadow-2xl hover:shadow-3xl transform hover:-translate-y-2 flex items-center justify-center">
+                                <span class="mr-2">Apply Now</span>
+                                <i class="fas fa-arrow-right transition-transform group-hover:translate-x-1"></i>
+                            </a>
+                            <a href="#about" class="group border-2 border-white text-white px-8 py-4 rounded-2xl font-semibold hover:bg-white hover:text-primary transition-all duration-300 text-center flex items-center justify-center">
+                                <span class="mr-2">Learn More</span>
+                                <i class="fas fa-play transition-transform group-hover:scale-110"></i>
+                            </a>
+                        </div>
+                        
+                        <!-- Stats -->
+                        <div class="grid grid-cols-3 gap-6 pt-8">
+                            <div class="text-center group">
+                                <div class="text-3xl lg:text-4xl font-bold text-yellow-300 mb-2 transition-transform group-hover:scale-110">2500+</div>
+                                <div class="text-sm lg:text-base text-blue-100">Students</div>
+                            </div>
+                            <div class="text-center group">
+                                <div class="text-3xl lg:text-4xl font-bold text-yellow-300 mb-2 transition-transform group-hover:scale-110">50+</div>
+                                <div class="text-sm lg:text-base text-blue-100">Expert Teachers</div>
+                            </div>
+                            <div class="text-center group">
+                                <div class="text-3xl lg:text-4xl font-bold text-yellow-300 mb-2 transition-transform group-hover:scale-110">25+</div>
+                                <div class="text-sm lg:text-base text-blue-100">Years Excellence</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Right Content -->
+                    <div class="animate-fade-in">
+                        <div class="relative">
+                            <!-- School Logo -->
+                            <div class="flex justify-center mb-8">
+                                <div class="relative">
+                                    <div class="w-48 h-48 lg:w-64 lg:h-64 rounded-full overflow-hidden border-4 border-white shadow-2xl animate-float">
+                                        <img src="https://iili.io/FtMmQku.png" alt="School Logo" class="w-full h-full object-cover">
+                                    </div>
+                                    <div class="absolute -top-2 -right-2 w-8 h-8 bg-yellow-400 rounded-full flex items-center justify-center animate-pulse">
+                                        <i class="fas fa-star text-white text-sm"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- School Campus Image -->
+                            <div class="relative">
+                                <div class="rounded-3xl overflow-hidden shadow-2xl transform rotate-2 hover:rotate-0 transition-all duration-500 hover:scale-105">
+                                    <img src="https://i.ibb.co/NXL9mQW/Whats-App-Image-2025-08-13-at-23-20-21-1.jpg" alt="School Campus" class="w-full h-64 lg:h-80 object-cover">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+                                </div>
+                                <!-- Floating Badges -->
+                                <div class="absolute -bottom-4 -left-4 glass-effect text-white px-6 py-3 rounded-2xl font-semibold shadow-lg backdrop-blur-sm">
+                                    <i class="fas fa-award mr-2 text-yellow-300"></i>
+                                    Excellence in Education
+                                </div>
+                                <div class="absolute -top-4 -right-4 bg-accent text-white px-4 py-2 rounded-2xl font-semibold shadow-lg animate-pulse">
+                                    <i class="fas fa-certificate mr-2"></i>
+                                    Accredited
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 lg:py-28 section-gradient relative overflow-hidden">
+        <!-- Background Pattern -->
+        <div class="absolute inset-0 opacity-5">
+            <div class="absolute top-20 left-10 w-72 h-72 bg-primary rounded-full blur-3xl"></div>
+            <div class="absolute bottom-20 right-10 w-96 h-96 bg-blue-400 rounded-full blur-3xl"></div>
+        </div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <!-- Section Header -->
+            <div class="text-center mb-20">
+                <div class="inline-block animate-fade-up">
+                    <span class="inline-flex items-center bg-primary/10 text-primary font-semibold text-sm uppercase tracking-wider px-4 py-2 rounded-full mb-4">
+                        <i class="fas fa-graduation-cap mr-2"></i>
+                        Excellence in Education
+                    </span>
+                    <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-gray-900 dark:text-white">
+                        About <span class="gradient-text">LYCEE DE NYANZA</span>
+                    </h2>
+                    <div class="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto mb-8 rounded-full"></div>
+                </div>
+                <p class="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed animate-fade-up" style="animation-delay: 0.2s;">
+                    We are committed to providing exceptional education that prepares students for success in their chosen careers and life endeavors, fostering innovation, character development, and academic excellence.
+                </p>
+            </div>
+
+            <!-- Main Content Grid -->
+            <div class="grid lg:grid-cols-2 gap-16 items-center mb-20">
+                <!-- Left: Features Grid -->
+                <div class="grid sm:grid-cols-2 gap-6 animate-fade-up" style="animation-delay: 0.4s;">
+                    <div class="group card-hover bg-white dark:bg-gray-800 p-8 rounded-3xl shadow-lg border border-gray-100 dark:border-gray-700">
+                        <div class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-2xl mb-6 group-hover:scale-110 transition-transform duration-300">
+                            <i class="fas fa-graduation-cap text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-gray-900 dark:text-white group-hover:text-primary transition-colors">Quality Education</h3>
+                        <p class="text-gray-600 dark:text-gray-300 leading-relaxed">Comprehensive curriculum designed to meet modern industry standards and global best practices</p>
+                    </div>
+
+                    <div class="group card-hover bg-white dark:bg-gray-800 p-8 rounded-3xl shadow-lg border border-gray-100 dark:border-gray-700">
+                        <div class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-accent to-green-600 rounded-2xl mb-6 group-hover:scale-110 transition-transform duration-300">
+                            <i class="fas fa-chalkboard-teacher text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-gray-900 dark:text-white group-hover:text-accent transition-colors">Expert Teachers</h3>
+                        <p class="text-gray-600 dark:text-gray-300 leading-relaxed">Experienced and qualified educators dedicated to nurturing each student's potential</p>
+                    </div>
+
+                    <div class="group card-hover bg-white dark:bg-gray-800 p-8 rounded-3xl shadow-lg border border-gray-100 dark:border-gray-700">
+                        <div class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-purple-500 to-indigo-600 rounded-2xl mb-6 group-hover:scale-110 transition-transform duration-300">
+                            <i class="fas fa-laptop-code text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-gray-900 dark:text-white group-hover:text-purple-600 transition-colors">Modern Facilities</h3>
+                        <p class="text-gray-600 dark:text-gray-300 leading-relaxed">State-of-the-art equipment and technology for immersive hands-on learning</p>
+                    </div>
+
+                    <div class="group card-hover bg-white dark:bg-gray-800 p-8 rounded-3xl shadow-lg border border-gray-100 dark:border-gray-700">
+                        <div class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-warning to-red-600 rounded-2xl mb-6 group-hover:scale-110 transition-transform duration-300">
+                            <i class="fas fa-award text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-gray-900 dark:text-white group-hover:text-warning transition-colors">Proven Excellence</h3>
+                        <p class="text-gray-600 dark:text-gray-300 leading-relaxed">Track record of academic achievements and successful graduate placements</p>
+                    </div>
+                </div>
+
+                <!-- Right: Statistics and Visual -->
+                <div class="space-y-8 animate-fade-up" style="animation-delay: 0.6s;">
+                    <!-- Achievement Stats -->
+                    <div class="bg-white dark:bg-gray-800 p-8 rounded-3xl shadow-lg border border-gray-100 dark:border-gray-700">
+                        <h3 class="text-2xl font-bold mb-8 text-center text-gray-900 dark:text-white">Our Achievements</h3>
+                        <div class="grid grid-cols-2 gap-6">
+                            <div class="text-center group">
+                                <div class="text-4xl font-bold text-primary mb-2 counter transition-transform group-hover:scale-110" data-target="2500">0</div>
+                                <div class="text-gray-600 dark:text-gray-400 font-medium">Active Students</div>
+                            </div>
+                            <div class="text-center group">
+                                <div class="text-4xl font-bold text-accent mb-2 counter transition-transform group-hover:scale-110" data-target="95">0</div>
+                                <div class="text-gray-600 dark:text-gray-400 font-medium">Success Rate %</div>
+                            </div>
+                            <div class="text-center group">
+                                <div class="text-4xl font-bold text-purple-600 mb-2 counter transition-transform group-hover:scale-110" data-target="50">0</div>
+                                <div class="text-gray-600 dark:text-gray-400 font-medium">Expert Teachers</div>
+                            </div>
+                            <div class="text-center group">
+                                <div class="text-4xl font-bold text-warning mb-2 counter transition-transform group-hover:scale-110" data-target="25">0</div>
+                                <div class="text-gray-600 dark:text-gray-400 font-medium">Years Experience</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Mission Statement -->
+                    <div class="bg-gradient-to-br from-primary to-secondary p-8 rounded-3xl text-white shadow-lg">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-white/20 rounded-2xl flex items-center justify-center mr-4">
+                                <i class="fas fa-bullseye text-white text-xl"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold">Our Mission</h3>
+                        </div>
+                        <p class="leading-relaxed mb-6">To empower students with knowledge, skills, and values that enable them to become responsible global citizens and leaders in their communities.</p>
+                        <div class="flex items-center space-x-4">
+                            <div class="flex items-center space-x-2">
+                                <div class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
+                                    <i class="fas fa-check text-white"></i>
+                                </div>
+                                <span class="font-semibold">Committed to Excellence</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Director Section -->
+    <section id="director" class="py-20 lg:py-28 bg-white dark:bg-gray-900 relative overflow-hidden">
+        <!-- Background Pattern -->
+        <div class="absolute inset-0 opacity-5">
+            <div class="pattern-dots w-full h-full"></div>
+        </div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <!-- Section Header -->
+            <div class="text-center mb-16">
+                <span class="inline-flex items-center bg-primary/10 text-primary font-semibold text-sm uppercase tracking-wider px-4 py-2 rounded-full mb-4">
+                    <i class="fas fa-user-tie mr-2"></i>
+                    Leadership
+                </span>
+                <h2 class="text-4xl md:text-5xl font-bold mb-6 text-gray-900 dark:text-white">
+                    Meet Our <span class="gradient-text">Director</span>
+                </h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full"></div>
+            </div>
+            
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <!-- Left: Director Info -->
+                <div class="animate-slide-in space-y-8">
+                    <div class="space-y-6">
+                        <h3 class="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white">
+                            <span class="gradient-text">MURANGWA JOSEPH</span>
+                        </h3>
+                        <p class="text-xl text-gray-600 dark:text-gray-300 font-medium">
+                            Director & Educational Leader
+                        </p>
+                        <p class="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
+                            Dedicated to fostering a culture of excellence in education, I believe in empowering every student to reach their full potential through innovative teaching methods and comprehensive support.
+                        </p>
+                    </div>
+                    
+                    <!-- Quote -->
+                    <div class="bg-gradient-to-r from-primary/10 to-secondary/10 p-6 rounded-2xl border-l-4 border-primary">
+                        <div class="flex items-start">
+                            <i class="fas fa-quote-left text-2xl text-primary mr-4 mt-1"></i>
+                            <div>
+                                <p class="text-lg italic text-gray-700 dark:text-gray-300 mb-3">
+                                    "Education is the key to unlocking the world, a passport to freedom. Every student deserves the opportunity to discover their passion and excel in their chosen field."
+                                </p>
+                                <p class="font-semibold text-primary">- Joseph Murangwa</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Contact Info -->
+                    <div class="space-y-4">
+                        <div class="flex items-center p-4 bg-gray-50 dark:bg-gray-800 rounded-xl">
+                            <div class="w-12 h-12 bg-primary rounded-xl flex items-center justify-center mr-4">
+                                <i class="fas fa-phone text-white"></i>
+                            </div>
+                            <div>
+                                <p class="font-semibold text-gray-900 dark:text-white">Direct Line</p>
+                                <p class="text-primary font-medium">+250 788 502 229</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center p-4 bg-gray-50 dark:bg-gray-800 rounded-xl">
+                            <div class="w-12 h-12 bg-accent rounded-xl flex items-center justify-center mr-4">
+                                <i class="fas fa-envelope text-white"></i>
+                            </div>
+                            <div>
+                                <p class="font-semibold text-gray-900 dark:text-white">Email</p>
+                                <p class="text-accent font-medium">lyceedenyanza2018@gmail.com</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- CTA Button -->
+                    <div class="pt-4">
+                        <a href="#contact" class="inline-flex items-center bg-primary text-white px-8 py-4 rounded-xl font-semibold hover:bg-secondary transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+                            <span class="mr-2">Schedule Meeting</span>
+                            <i class="fas fa-calendar-alt"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Right: Director Image -->
+                <div class="animate-fade-in flex justify-center lg:justify-end">
+                    <div class="relative">
+                        <!-- Main Image -->
+                        <div class="relative">
+                            <div class="w-80 h-80 lg:w-96 lg:h-96 rounded-3xl overflow-hidden shadow-2xl transform rotate-3 hover:rotate-0 transition-all duration-500">
+                                <img src="https://i.ibb.co/4ZwSDCC3/image.png" alt="MURANGWA JOSEPH" class="w-full h-full object-cover">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+                            </div>
+                            
+                            <!-- Floating Elements -->
+                            <div class="absolute -top-4 -right-4 w-16 h-16 bg-warning rounded-2xl flex items-center justify-center shadow-lg animate-float">
+                                <i class="fas fa-award text-white text-xl"></i>
+                            </div>
+                            
+                            <div class="absolute -bottom-4 -left-4 glass-effect text-white px-6 py-3 rounded-2xl font-semibold shadow-lg">
+                                <i class="fas fa-users mr-2"></i>
+                                25+ Years Experience
+                            </div>
+                        </div>
+                        
+                        <!-- Background Decoration -->
+                        <div class="absolute -z-10 top-8 left-8 w-full h-full bg-gradient-to-br from-primary/20 to-secondary/20 rounded-3xl"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Courses Section -->
+    <section id="courses" class="py-20 lg:py-28 section-gradient">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Section Header -->
+            <div class="text-center mb-20">
+                <span class="inline-flex items-center bg-primary/10 text-primary font-semibold text-sm uppercase tracking-wider px-4 py-2 rounded-full mb-4">
+                    <i class="fas fa-book-open mr-2"></i>
+                    Academic Programs
+                </span>
+                <h2 class="text-4xl md:text-5xl font-bold mb-6 text-gray-900 dark:text-white">
+                    Our <span class="gradient-text">Courses</span>
+                </h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto mb-8 rounded-full"></div>
+                <p class="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+                    Choose from our comprehensive range of technical and academic programs designed to prepare you for the future
+                </p>
+            </div>
+            
+            <!-- Course Overview Cards -->
+            <div class="grid lg:grid-cols-3 gap-8 mb-20">
+                <!-- Levels Card -->
+                <div class="card-hover bg-white dark:bg-gray-800 p-8 rounded-3xl shadow-lg border border-gray-100 dark:border-gray-700">
+                    <div class="text-center mb-6">
+                        <div class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-2xl mb-4">
+                            <i class="fas fa-layer-group text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">ACADEMIC LEVELS</h3>
+                        <div class="w-16 h-1 bg-primary mx-auto rounded-full"></div>
+                    </div>
+                    <ul class="space-y-4">
+                        <li class="flex items-start group">
+                            <div class="w-6 h-6 bg-accent rounded-full flex items-center justify-center mr-3 mt-0.5 group-hover:scale-110 transition-transform">
+                                <i class="fas fa-check text-white text-xs"></i>
+                            </div>
+                            <span class="font-medium text-gray-700 dark:text-gray-300 group-hover:text-accent transition-colors">
+                                LEVEL 3, 4 & 5 SOFTWARE DEVELOPMENT
+                            </span>
+                        </li>
+                        <li class="flex items-start group">
+                            <div class="w-6 h-6 bg-accent rounded-full flex items-center justify-center mr-3 mt-0.5 group-hover:scale-110 transition-transform">
+                                <i class="fas fa-check text-white text-xs"></i>
+                            </div>
+                            <span class="font-medium text-gray-700 dark:text-gray-300 group-hover:text-accent transition-colors">
+                                LEVEL 3, 4 & 5 NETWORKING & IT
+                            </span>
+                        </li>
+                        <li class="flex items-start group">
+                            <div class="w-6 h-6 bg-accent rounded-full flex items-center justify-center mr-3 mt-0.5 group-hover:scale-110 transition-transform">
+                                <i class="fas fa-check text-white text-xs"></i>
+                            </div>
+                            <span class="font-medium text-gray-700 dark:text-gray-300 group-hover:text-accent transition-colors">
+                                SENIOR 4, 5 & 6 ACCOUNTING
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Trades Card -->
+                <div class="card-hover bg-white dark:bg-gray-800 p-8 rounded-3xl shadow-lg border border-gray-100 dark:border-gray-700">
+                    <div class="text-center mb-6">
+                        <div class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-accent to-green-600 rounded-2xl mb-4">
+                            <i class="fas fa-tools text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">AVAILABLE TRADES</h3>
+                        <div class="w-16 h-1 bg-accent mx-auto rounded-full"></div>
+                    </div>
+                    <div class="space-y-3 max-h-64 overflow-y-auto custom-scrollbar">
+                        <div class="flex items-start group">
+                            <div class="w-2 h-2 bg-primary rounded-full mr-3 mt-2 group-hover:scale-150 transition-transform"></div>
+                            <span class="text-sm text-gray-700 dark:text-gray-300 group-hover:text-primary transition-colors">Software Development (SOD)</span>
+                        </div>
+                        <div class="flex items-start group">
+                            <div class="w-2 h-2 bg-primary rounded-full mr-3 mt-2 group-hover:scale-150 transition-transform"></div>
+                            <span class="text-sm text-gray-700 dark:text-gray-300 group-hover:text-primary transition-colors">Networking & Internet Technology (NIT)</span>
+                        </div>
+                        <div class="flex items-start group">
+                            <div class="w-2 h-2 bg-primary rounded-full mr-3 mt-2 group-hover:scale-150 transition-transform"></div>
+                            <span class="text-sm text-gray-700 dark:text-gray-300 group-hover:text-primary transition-colors">Computer System & Architecture (CSA)</span>
+                        </div>
+                        <div class="flex items-start group">
+                            <div class="w-2 h-2 bg-primary rounded-full mr-3 mt-2 group-hover:scale-150 transition-transform"></div>
+                            <span class="text-sm text-gray-700 dark:text-gray-300 group-hover:text-primary transition-colors">Multimedia Production (MMP)</span>
+                        </div>
+                        <div class="flex items-start group">
+                            <div class="w-2 h-2 bg-primary rounded-full mr-3 mt-2 group-hover:scale-150 transition-transform"></div>
+                            <span class="text-sm text-gray-700 dark:text-gray-300 group-hover:text-primary transition-colors">Tourism (TOR)</span>
+                        </div>
+                        <div class="flex items-start group">
+                            <div class="w-2 h-2 bg-primary rounded-full mr-3 mt-2 group-hover:scale-150 transition-transform"></div>
+                            <span class="text-sm text-gray-700 dark:text-gray-300 group-hover:text-primary transition-colors">Food and Beverage (FBO)</span>
+                        </div>
+                        <div class="flex items-start group">
+                            <div class="w-2 h-2 bg-primary rounded-full mr-3 mt-2 group-hover:scale-150 transition-transform"></div>
+                            <span class="text-sm text-gray-700 dark:text-gray-300 group-hover:text-primary transition-colors">Electrical Technology (ELT)</span>
+                        </div>
+                        <div class="flex items-start group">
+                            <div class="w-2 h-2 bg-primary rounded-full mr-3 mt-2 group-hover:scale-150 transition-transform"></div>
+                            <span class="text-sm text-gray-700 dark:text-gray-300 group-hover:text-primary transition-colors">Electronics and Telecommunication (ETE)</span>
+                        </div>
+                        <div class="flex items-start group">
+                            <div class="w-2 h-2 bg-primary rounded-full mr-3 mt-2 group-hover:scale-150 transition-transform"></div>
+                            <span class="text-sm text-gray-700 dark:text-gray-300 group-hover:text-primary transition-colors">Automobile and Technology (AUT)</span>
+                        </div>
+                        <div class="flex items-start group">
+                            <div class="w-2 h-2 bg-primary rounded-full mr-3 mt-2 group-hover:scale-150 transition-transform"></div>
+                            <span class="text-sm text-gray-700 dark:text-gray-300 group-hover:text-primary transition-colors">Building and Construction (BDC)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Payment Card -->
+                <div class="card-hover bg-gradient-to-br from-warning to-orange-600 p-8 rounded-3xl shadow-lg text-white">
+                    <div class="text-center">
+                        <div class="inline-flex items-center justify-center w-16 h-16 bg-white/20 rounded-2xl mb-6">
+                            <i class="fas fa-credit-card text-white text-xl"></i>
+                        </div>
+                        <div class="mb-6">
+                            <img src="https://urubutopay.rw/new-logo-blue.svg" alt="Urubuto Pay Logo" class="h-12 mx-auto mb-4 bg-white rounded-lg px-2 py-1">
+                        </div>
+                        <h3 class="text-2xl font-bold mb-6">EASY PAYMENT</h3>
+                        <div class="mb-6">
+                            <div class="text-4xl font-bold mb-2">119,500 Frw</div>
+                            <div class="text-lg opacity-90">Per Term</div>
+                        </div>
+                        <button onclick="openPayment()" class="w-full bg-white text-warning py-4 px-6 rounded-2xl font-bold transition-all duration-300 hover:bg-gray-100 hover:scale-105 shadow-lg mb-6">
+                            <i class="fas fa-money-bill-wave mr-2"></i>
+                            PAY SCHOOL FEES
+                        </button>
+                        <div class="text-sm opacity-90 space-y-1">
+                            <p><strong>School Code:</strong> LYCEE DE NYANZA</p>
+                            <p><strong>Merchant Code:</strong> TH26137099</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Detailed Courses Grid -->
+            <div class="mb-12">
+                <h3 class="text-3xl font-bold mb-12 text-center text-gray-900 dark:text-white">
+                    Explore Our <span class="gradient-text">Programs</span>
+                </h3>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Course Cards -->
+                    <div class="group card-hover bg-white dark:bg-gray-800 rounded-3xl shadow-lg overflow-hidden border border-gray-100 dark:border-gray-700">
+                        <div class="h-48 bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900 dark:to-blue-800 flex items-center justify-center relative overflow-hidden">
+                            <div class="absolute inset-0 pattern-dots opacity-20"></div>
+                            <i class="fas fa-code text-6xl text-primary relative z-10 group-hover:scale-110 transition-transform duration-300"></i>
+                        </div>
+                        <div class="p-8">
+                            <h4 class="text-xl font-bold mb-3 text-gray-900 dark:text-white group-hover:text-primary transition-colors">SOFTWARE DEVELOPMENT (SOD)</h4>
+                            <p class="text-gray-600 dark:text-gray-300 leading-relaxed">Master programming languages, web development, mobile apps, and software engineering principles with hands-on projects.</p>
+                        </div>
+                    </div>
+
+                    <div class="group card-hover bg-white dark:bg-gray-800 rounded-3xl shadow-lg overflow-hidden border border-gray-100 dark:border-gray-700">
+                        <div class="h-48 bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900 dark:to-green-800 flex items-center justify-center relative overflow-hidden">
+                            <div class="absolute inset-0 pattern-dots opacity-20"></div>
+                            <i class="fas fa-network-wired text-6xl text-accent relative z-10 group-hover:scale-110 transition-transform duration-300"></i>
+                        </div>
+                        <div class="p-8">
+                            <h4 class="text-xl font-bold mb-3 text-gray-900 dark:text-white group-hover:text-accent transition-colors">NETWORKING & INTERNET TECHNOLOGY (NIT)</h4>
+                            <p class="text-gray-600 dark:text-gray-300 leading-relaxed">Become an expert in network administration, cybersecurity, and internet infrastructure management.</p>
+                        </div>
+                    </div>
+
+                    <div class="group card-hover bg-white dark:bg-gray-800 rounded-3xl shadow-lg overflow-hidden border border-gray-100 dark:border-gray-700">
+                        <div class="h-48 bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900 dark:to-purple-800 flex items-center justify-center relative overflow-hidden">
+                            <div class="absolute inset-0 pattern-dots opacity-20"></div>
+                            <i class="fas fa-desktop text-6xl text-purple-600 relative z-10 group-hover:scale-110 transition-transform duration-300"></i>
+                        </div>
+                        <div class="p-8">
+                            <h4 class="text-xl font-bold mb-3 text-gray-900 dark:text-white group-hover:text-purple-600 transition-colors">COMPUTER SYSTEM & ARCHITECTURE (CSA)</h4>
+                            <p class="text-gray-600 dark:text-gray-300 leading-relaxed">Deep dive into computer hardware, system design, and computer architecture fundamentals.</p>
+                        </div>
+                    </div>
+
+                    <div class="group card-hover bg-white dark:bg-gray-800 rounded-3xl shadow-lg overflow-hidden border border-gray-100 dark:border-gray-700">
+                        <div class="h-48 bg-gradient-to-br from-pink-50 to-pink-100 dark:from-pink-900 dark:to-pink-800 flex items-center justify-center relative overflow-hidden">
+                            <div class="absolute inset-0 pattern-dots opacity-20"></div>
+                            <i class="fas fa-photo-video text-6xl text-pink-600 relative z-10 group-hover:scale-110 transition-transform duration-300"></i>
+                        </div>
+                        <div class="p-8">
+                            <h4 class="text-xl font-bold mb-3 text-gray-900 dark:text-white group-hover:text-pink-600 transition-colors">MULTIMEDIA PRODUCTION (MMP)</h4>
+                            <p class="text-gray-600 dark:text-gray-300 leading-relaxed">Create stunning digital content, master video editing, graphic design, and multimedia presentation skills.</p>
+                        </div>
+                    </div>
+
+                    <div class="group card-hover bg-white dark:bg-gray-800 rounded-3xl shadow-lg overflow-hidden border border-gray-100 dark:border-gray-700">
+                        <div class="h-48 bg-gradient-to-br from-yellow-50 to-yellow-100 dark:from-yellow-900 dark:to-yellow-800 flex items-center justify-center relative overflow-hidden">
+                            <div class="absolute inset-0 pattern-dots opacity-20"></div>
+                            <i class="fas fa-umbrella-beach text-6xl text-yellow-600 relative z-10 group-hover:scale-110 transition-transform duration-300"></i>
+                        </div>
+                        <div class="p-8">
+                            <h4 class="text-xl font-bold mb-3 text-gray-900 dark:text-white group-hover:text-yellow-600 transition-colors">TOURISM (TOR)</h4>
+                            <p class="text-gray-600 dark:text-gray-300 leading-relaxed">Excel in hospitality management, tour planning, and tourism industry operations with practical experience.</p>
+                        </div>
+                    </div>
+
+                    <div class="group card-hover bg-white dark:bg-gray-800 rounded-3xl shadow-lg overflow-hidden border border-gray-100 dark:border-gray-700">
+                        <div class="h-48 bg-gradient-to-br from-red-50 to-red-100 dark:from-red-900 dark:to-red-800 flex items-center justify-center relative overflow-hidden">
+                            <div class="absolute inset-0 pattern-dots opacity-20"></div>
+                            <i class="fas fa-utensils text-6xl text-red-600 relative z-10 group-hover:scale-110 transition-transform duration-300"></i>
+                        </div>
+                        <div class="p-8">
+                            <h4 class="text-xl font-bold mb-3 text-gray-900 dark:text-white group-hover:text-red-600 transition-colors">FOOD AND BEVERAGE (FBO)</h4>
+                            <p class="text-gray-600 dark:text-gray-300 leading-relaxed">Master culinary arts, food service management, and professional beverage preparation techniques.</p>
+                        </div>
+                    </div>
+
+                    <div class="group card-hover bg-white dark:bg-gray-800 rounded-3xl shadow-lg overflow-hidden border border-gray-100 dark:border-gray-700">
+                        <div class="h-48 bg-gradient-to-br from-indigo-50 to-indigo-100 dark:from-indigo-900 dark:to-indigo-800 flex items-center justify-center relative overflow-hidden">
+                            <div class="absolute inset-0 pattern-dots opacity-20"></div>
+                            <i class="fas fa-bolt text-6xl text-indigo-600 relative z-10 group-hover:scale-110 transition-transform duration-300"></i>
+                        </div>
+                        <div class="p-8">
+                            <h4 class="text-xl font-bold mb-3 text-gray-900 dark:text-white group-hover:text-indigo-600 transition-colors">ELECTRICAL TECHNOLOGY (ELT)</h4>
+                            <p class="text-gray-600 dark:text-gray-300 leading-relaxed">Study electrical systems, power distribution, and modern electrical installation techniques.</p>
+                        </div>
+                    </div>
+
+                    <div class="group card-hover bg-white dark:bg-gray-800 rounded-3xl shadow-lg overflow-hidden border border-gray-100 dark:border-gray-700">
+                        <div class="h-48 bg-gradient-to-br from-teal-50 to-teal-100 dark:from-teal-900 dark:to-teal-800 flex items-center justify-center relative overflow-hidden">
+                            <div class="absolute inset-0 pattern-dots opacity-20"></div>
+                            <i class="fas fa-satellite-dish text-6xl text-teal-600 relative z-10 group-hover:scale-110 transition-transform duration-300"></i>
+                        </div>
+                        <div class="p-8">
+                            <h4 class="text-xl font-bold mb-3 text-gray-900 dark:text-white group-hover:text-teal-600 transition-colors">ELECTRONICS AND TELECOMMUNICATION (ETE)</h4>
+                            <p class="text-gray-600 dark:text-gray-300 leading-relaxed">Learn electronic circuits, communication systems, and cutting-edge telecommunication technologies.</p>
+                        </div>
+                    </div>
+
+                    <div class="group card-hover bg-white dark:bg-gray-800 rounded-3xl shadow-lg overflow-hidden border border-gray-100 dark:border-gray-700">
+                        <div class="h-48 bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-900 dark:to-orange-800 flex items-center justify-center relative overflow-hidden">
+                            <div class="absolute inset-0 pattern-dots opacity-20"></div>
+                            <i class="fas fa-car text-6xl text-orange-600 relative z-10 group-hover:scale-110 transition-transform duration-300"></i>
+                        </div>
+                        <div class="p-8">
+                            <h4 class="text-xl font-bold mb-3 text-gray-900 dark:text-white group-hover:text-orange-600 transition-colors">AUTOMOBILE AND TECHNOLOGY (AUT)</h4>
+                            <p class="text-gray-600 dark:text-gray-300 leading-relaxed">Study automotive mechanics, engine systems, and modern vehicle technology innovations.</p>
+                        </div>
+                    </div>
+
+                    <div class="group card-hover bg-white dark:bg-gray-800 rounded-3xl shadow-lg overflow-hidden border border-gray-100 dark:border-gray-700">
+                        <div class="h-48 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-700 dark:to-gray-800 flex items-center justify-center relative overflow-hidden">
+                            <div class="absolute inset-0 pattern-dots opacity-20"></div>
+                            <i class="fas fa-hammer text-6xl text-gray-600 relative z-10 group-hover:scale-110 transition-transform duration-300"></i>
+                        </div>
+                        <div class="p-8">
+                            <h4 class="text-xl font-bold mb-3 text-gray-900 dark:text-white group-hover:text-gray-600 transition-colors">BUILDING AND CONSTRUCTION (BDC)</h4>
+                            <p class="text-gray-600 dark:text-gray-300 leading-relaxed">Learn construction techniques, project management, and modern building design principles.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Admission Section -->
+    <section id="admission" class="py-20 lg:py-28 bg-white dark:bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Section Header -->
+            <div class="text-center mb-20">
+                <span class="inline-flex items-center bg-primary/10 text-primary font-semibold text-sm uppercase tracking-wider px-4 py-2 rounded-full mb-4">
+                    <i class="fas fa-door-open mr-2"></i>
+                    Join Our Community
+                </span>
+                <h2 class="text-4xl md:text-5xl font-bold mb-6 text-gray-900 dark:text-white">
+                    <span class="gradient-text">Admission</span> Process
+                </h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto mb-8 rounded-full"></div>
+                <p class="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+                    Start your journey to success with us. Our admission process is designed to be simple and accessible for all qualified students.
+                </p>
+            </div>
+            
+            <div class="grid lg:grid-cols-2 gap-12">
+                <!-- Requirements -->
+                <div class="card-hover bg-gradient-to-br from-primary/5 to-secondary/5 p-8 lg:p-10 rounded-3xl shadow-lg border border-primary/20">
+                    <div class="text-center mb-8">
+                        <div class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-2xl mb-4">
+                            <i class="fas fa-clipboard-list text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white mb-2">Requirements</h3>
+                        <div class="w-16 h-1 bg-primary mx-auto rounded-full"></div>
+                    </div>
+                    <ul class="space-y-5">
+                        <li class="group flex items-start">
+                            <div class="flex-shrink-0 w-8 h-8 bg-accent rounded-full flex items-center justify-center mr-4 mt-1 group-hover:scale-110 transition-transform">
+                                <i class="fas fa-graduation-cap text-white text-sm"></i>
+                            </div>
+                            <div>
+                                <p class="font-semibold text-gray-900 dark:text-white group-hover:text-accent transition-colors">O'Level Results</p>
+                                <p class="text-gray-600 dark:text-gray-300 text-sm">Students must bring O'Level result slip</p>
+                            </div>
+                        </li>
+                        <li class="group flex items-start">
+                            <div class="flex-shrink-0 w-8 h-8 bg-accent rounded-full flex items-center justify-center mr-4 mt-1 group-hover:scale-110 transition-transform">
+                                <i class="fas fa-camera text-white text-sm"></i>
+                            </div>
+                            <div>
+                                <p class="font-semibold text-gray-900 dark:text-white group-hover:text-accent transition-colors">Passport Photos</p>
+                                <p class="text-gray-600 dark:text-gray-300 text-sm">2 recent passport photos required</p>
+                            </div>
+                        </li>
+                        <li class="group flex items-start">
+                            <div class="flex-shrink-0 w-8 h-8 bg-accent rounded-full flex items-center justify-center mr-4 mt-1 group-hover:scale-110 transition-transform">
+                                <i class="fas fa-money-bill-wave text-white text-sm"></i>
+                            </div>
+                            <div>
+                                <p class="font-semibold text-gray-900 dark:text-white group-hover:text-accent transition-colors">School Fees</p>
+                                <p class="text-gray-600 dark:text-gray-300 text-sm">Payment required - NON REFUNDABLE</p>
+                            </div>
+                        </li>
+                        <li class="group flex items-start">
+                            <div class="flex-shrink-0 w-8 h-8 bg-accent rounded-full flex items-center justify-center mr-4 mt-1 group-hover:scale-110 transition-transform">
+                                <i class="fas fa-file-alt text-white text-sm"></i>
+                            </div>
+                            <div>
+                                <p class="font-semibold text-gray-900 dark:text-white group-hover:text-accent transition-colors">Previous Records</p>
+                                <p class="text-gray-600 dark:text-gray-300 text-sm">Continuing students need previous year report cards</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Application Process -->
+                <div class="card-hover bg-gradient-to-br from-accent/5 to-green-600/5 p-8 lg:p-10 rounded-3xl shadow-lg border border-accent/20">
+                    <div class="text-center mb-8">
+                        <div class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-accent to-green-600 rounded-2xl mb-4">
+                            <i class="fas fa-route text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white mb-2">Application Process</h3>
+                        <div class="w-16 h-1 bg-accent mx-auto rounded-full"></div>
+                    </div>
+                    <div class="space-y-6">
+                        <div class="group">
+                            <h4 class="font-bold text-lg text-gray-900 dark:text-white mb-2 group-hover:text-accent transition-colors">
+                                <i class="fas fa-check-circle text-accent mr-2"></i>
+                                Admission Criteria
+                            </h4>
+                            <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
+                                Admission into LYCEE DE NYANZA takes place while students have been approved of having the necessary requirements to become part of our community.
+                            </p>
+                        </div>
+                        
+                        <div class="group">
+                            <h4 class="font-bold text-lg text-gray-900 dark:text-white mb-2 group-hover:text-accent transition-colors">
+                                <i class="fas fa-calendar-alt text-accent mr-2"></i>
+                                Year-Round Applications
+                            </h4>
+                            <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
+                                Applications are welcome all through the year. Interviews are scheduled and organized by the administration and communicated to parents accordingly.
+                            </p>
+                        </div>
+                        
+                        <div class="group">
+                            <h4 class="font-bold text-lg text-gray-900 dark:text-white mb-2 group-hover:text-accent transition-colors">
+                                <i class="fas fa-building text-accent mr-2"></i>
+                                Office Applications
+                            </h4>
+                            <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
+                                Application is done at our office on working days from Monday to Friday.
+                            </p>
+                        </div>
+                        
+                        <div class="bg-gradient-to-r from-primary/10 to-secondary/10 p-6 rounded-2xl border-l-4 border-primary">
+                            <h4 class="font-bold text-lg text-primary mb-2">
+                                <i class="fas fa-laptop text-primary mr-2"></i>
+                                Online Application Available
+                            </h4>
+                            <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
+                                You can also apply online via this website by filling the application form. After confirmation of your application, an email will be sent to you.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Application Form Section -->
+    <section id="apply" class="py-20 lg:py-28 section-gradient">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Section Header -->
+            <div class="text-center mb-16">
+                <span class="inline-flex items-center bg-primary/10 text-primary font-semibold text-sm uppercase tracking-wider px-4 py-2 rounded-full mb-4">
+                    <i class="fas fa-edit mr-2"></i>
+                    Apply Now
+                </span>
+                <h2 class="text-4xl md:text-5xl font-bold mb-6 text-gray-900 dark:text-white">
+                    Application Form For <span class="gradient-text">Admission</span>
+                </h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto mb-8 rounded-full"></div>
+                <p class="text-lg md:text-xl text-gray-600 dark:text-gray-300">
+                    Fill out the form below to apply for admission to LYCEE DE NYANZA
+                </p>
+            </div>
+            
+            <!-- Form Progress -->
+            <div class="mb-12">
+                <div class="flex justify-between relative">
+                    <div class="step flex flex-col items-center relative z-10">
+                        <div class="w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center mb-3 step-number shadow-lg">
+                            <span class="font-bold">1</span>
+                        </div>
+                        <span class="text-sm font-medium text-gray-600 dark:text-gray-400 step-name">Personal Info</span>
+                    </div>
+                    <div class="step flex flex-col items-center relative z-10">
+                        <div class="w-12 h-12 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-400 flex items-center justify-center mb-3 step-number">
+                            <span class="font-bold">2</span>
+                        </div>
+                        <span class="text-sm font-medium text-gray-600 dark:text-gray-400 step-name">Contact Info</span>
+                    </div>
+                    <div class="step flex flex-col items-center relative z-10">
+                        <div class="w-12 h-12 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-400 flex items-center justify-center mb-3 step-number">
+                            <span class="font-bold">3</span>
+                        </div>
+                        <span class="text-sm font-medium text-gray-600 dark:text-gray-400 step-name">Course Selection</span>
+                    </div>
+                    <div class="absolute top-6 left-0 right-0 h-1 bg-gray-200 dark:bg-gray-700 z-0">
+                        <div class="h-full bg-primary progress-bar transition-all duration-500 rounded-full" style="width: 0%"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <form id="applicationForm" class="bg-white dark:bg-gray-800 p-8 lg:p-12 rounded-3xl shadow-lg border border-gray-100 dark:border-gray-700">
+                <!-- Step 1: Personal Information -->
+                <div class="form-step active" data-step="1">
+                    <div class="text-center mb-8">
+                        <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">Personal Information</h3>
+                        <p class="text-gray-600 dark:text-gray-400">Tell us about yourself</p>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="md:col-span-2">
+                            <label class="block text-sm font-semibold mb-3 text-gray-900 dark:text-white">
+                                <i class="fas fa-user mr-2 text-primary"></i>
+                                Name of the Student *
+                            </label>
+                            <input type="text" name="studentName" required 
+                                   class="w-full px-6 py-4 border-2 border-gray-200 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all duration-300 bg-white dark:bg-gray-700 text-gray-900 dark:text-white text-base">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-semibold mb-3 text-gray-900 dark:text-white">
+                                <i class="fas fa-birthday-cake mr-2 text-primary"></i>
+                                Age *
+                            </label>
+                            <input type="number" name="age" required min="14" max="30"
+                                   class="w-full px-6 py-4 border-2 border-gray-200 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all duration-300 bg-white dark:bg-gray-700 text-gray-900 dark:text-white text-base">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-semibold mb-3 text-gray-900 dark:text-white">
+                                <i class="fas fa-mars mr-2 text-primary"></i>
+                                Father Name *
+                            </label>
+                            <input type="text" name="fatherName" required 
+                                   class="w-full px-6 py-4 border-2 border-gray-200 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all duration-300 bg-white dark:bg-gray-700 text-gray-900 dark:text-white text-base">
+                        </div>
+                        
+                        <div class="md:col-span-2">
+                            <label class="block text-sm font-semibold mb-3 text-gray-900 dark:text-white">
+                                <i class="fas fa-venus mr-2 text-primary"></i>
+                                Mother Name *
+                            </label>
+                            <input type="text" name="motherName" required 
+                                   class="w-full px-6 py-4 border-2 border-gray-200 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all duration-300 bg-white dark:bg-gray-700 text-gray-900 dark:text-white text-base">
+                        </div>
+                    </div>
+                    
+                    <div class="flex justify-end mt-8">
+                        <button type="button" class="next-step bg-primary text-white py-4 px-8 rounded-xl hover:bg-secondary transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 font-semibold">
+                            Next Step <i class="fas fa-arrow-right ml-2"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Step 2: Contact Information -->
+                <div class="form-step" data-step="2">
+                    <div class="text-center mb-8">
+                        <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">Contact Information</h3>
+                        <p class="text-gray-600 dark:text-gray-400">How can we reach you?</p>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="md:col-span-2">
+                            <label class="block text-sm font-semibold mb-3 text-gray-900 dark:text-white">
+                                <i class="fas fa-envelope mr-2 text-primary"></i>
+                                Email Address *
+                            </label>
+                            <input type="email" name="email" required 
+                                   class="w-full px-6 py-4 border-2 border-gray-200 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all duration-300 bg-white dark:bg-gray-700 text-gray-900 dark:text-white text-base">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-semibold mb-3 text-gray-900 dark:text-white">
+                                <i class="fas fa-mobile-alt mr-2 text-primary"></i>
+                                Your Phone Number *
+                            </label>
+                            <input type="tel" name="phoneNo" required 
+                                   class="w-full px-6 py-4 border-2 border-gray-200 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all duration-300 bg-white dark:bg-gray-700 text-gray-900 dark:text-white text-base">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-semibold mb-3 text-gray-900 dark:text-white">
+                                <i class="fas fa-phone mr-2 text-primary"></i>
+                                Guardian Phone Number *
+                            </label>
+                            <input type="tel" name="guardianPhone" required 
+                                   class="w-full px-6 py-4 border-2 border-gray-200 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all duration-300 bg-white dark:bg-gray-700 text-gray-900 dark:text-white text-base">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-semibold mb-3 text-gray-900 dark:text-white">
+                                <i class="fas fa-map-marker-alt mr-2 text-primary"></i>
+                                District *
+                            </label>
+                            <input type="text" name="district" required 
+                                   class="w-full px-6 py-4 border-2 border-gray-200 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all duration-300 bg-white dark:bg-gray-700 text-gray-900 dark:text-white text-base">
+                        </div>
+                        
+                        <div class="md:col-span-2">
+                            <label class="block text-sm font-semibold mb-3 text-gray-900 dark:text-white">
+                                <i class="fas fa-home mr-2 text-primary"></i>
+                                Home Address *
+                            </label>
+                            <textarea name="homeAddress" required rows="4" 
+                                      class="w-full px-6 py-4 border-2 border-gray-200 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all duration-300 bg-white dark:bg-gray-700 text-gray-900 dark:text-white text-base resize-none"></textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="flex justify-between mt-8">
+                        <button type="button" class="prev-step bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 py-4 px-8 rounded-xl hover:bg-gray-300 dark:hover:bg-gray-600 transition-all duration-300 shadow-lg font-semibold">
+                            <i class="fas fa-arrow-left mr-2"></i> Previous
+                        </button>
+                        <button type="button" class="next-step bg-primary text-white py-4 px-8 rounded-xl hover:bg-secondary transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 font-semibold">
+                            Next Step <i class="fas fa-arrow-right ml-2"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Step 3: Course Selection -->
+                <div class="form-step" data-step="3">
+                    <div class="text-center mb-8">
+                        <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">Course Selection</h3>
+                        <p class="text-gray-600 dark:text-gray-400">Choose your preferred program</p>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="md:col-span-2">
+                            <label class="block text-sm font-semibold mb-3 text-gray-900 dark:text-white">
+                                <i class="fas fa-book mr-2 text-primary"></i>
+                                Select Course *
+                            </label>
+                            <select name="course" required 
+                                    class="w-full px-6 py-4 border-2 border-gray-200 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all duration-300 bg-white dark:bg-gray-700 text-gray-900 dark:text-white text-base">
+                                <option value="">Choose your course...</option>
+                                <option value="SOFTWARE DEVELOPMENT (SOD)">SOFTWARE DEVELOPMENT (SOD)</option>
+                                <option value="NETWORKING & INTERNET TECHNOLOGY (NIT)">NETWORKING & INTERNET TECHNOLOGY (NIT)</option>
+                                <option value="COMPUTER SYSTEM & ARCHITECTURE (CSA)">COMPUTER SYSTEM & ARCHITECTURE (CSA)</option>
+                                <option value="MULTIMEDIA PRODUCTION (MMP)">MULTIMEDIA PRODUCTION (MMP)</option>
+                                <option value="TOURISM (TOR)">TOURISM (TOR)</option>
+                                <option value="FOOD AND BEVERAGE (FBO)">FOOD AND BEVERAGE (FBO)</option>
+                                <option value="ELECTRICAL TECHNOLOGY (ELT)">ELECTRICAL TECHNOLOGY (ELT)</option>
+                                <option value="ELECTRONICS AND TELECOMMUNICATION (ETE)">ELECTRONICS AND TELECOMMUNICATION (ETE)</option>
+                                <option value="AUTOMOBILE AND TECHNOLOGY (AUT)">AUTOMOBILE AND TECHNOLOGY (AUT)</option>
+                                <option value="BUILDING AND CONSTRUCTION (BDC)">BUILDING AND CONSTRUCTION (BDC)</option>
+                            </select>
+                        </div>
+                        
+                        <div class="md:col-span-2">
+                            <label class="block text-sm font-semibold mb-3 text-gray-900 dark:text-white">
+                                <i class="fas fa-layer-group mr-2 text-primary"></i>
+                                Select Level *
+                            </label>
+                            <select name="level" required 
+                                    class="w-full px-6 py-4 border-2 border-gray-200 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all duration-300 bg-white dark:bg-gray-700 text-gray-900 dark:text-white text-base">
+                                <option value="">Choose your level...</option>
+                                <option value="Level 3">Level 3</option>
+                                <option value="Level 4">Level 4</option>
+                                <option value="Level 5">Level 5</option>
+                                <option value="Senior 4">Senior 4</option>
+                                <option value="Senior 5">Senior 5</option>
+                                <option value="Senior 6">Senior 6</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="flex justify-between mt-8">
+                        <button type="button" class="prev-step bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 py-4 px-8 rounded-xl hover:bg-gray-300 dark:hover:bg-gray-600 transition-all duration-300 shadow-lg font-semibold">
+                            <i class="fas fa-arrow-left mr-2"></i> Previous
+                        </button>
+                        <button type="submit" class="bg-gradient-to-r from-accent to-green-600 text-white py-4 px-8 rounded-xl hover:from-green-600 hover:to-accent transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 font-semibold">
+                            <i class="fas fa-paper-plane mr-2"></i> Submit Application
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 lg:py-28 bg-white dark:bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Section Header -->
+            <div class="text-center mb-20">
+                <span class="inline-flex items-center bg-primary/10 text-primary font-semibold text-sm uppercase tracking-wider px-4 py-2 rounded-full mb-4">
+                    <i class="fas fa-phone mr-2"></i>
+                    Get In Touch
+                </span>
+                <h2 class="text-4xl md:text-5xl font-bold mb-6 text-gray-900 dark:text-white">
+                    Contact <span class="gradient-text">Us</span>
+                </h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto mb-8 rounded-full"></div>
+                <p class="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+                    Ready to start your educational journey? Get in touch with us for more information about admissions, courses, and campus life.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Phone -->
+                <div class="group card-hover text-center p-8 bg-gradient-to-br from-primary/5 to-secondary/5 rounded-3xl shadow-lg border border-primary/20">
+                    <div class="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-primary to-secondary rounded-3xl mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <i class="fas fa-phone text-2xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-gray-900 dark:text-white group-hover:text-primary transition-colors">Phone</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-2">Direct Line</p>
+                    <a href="tel:+250788502229" class="text-lg font-semibold text-primary hover:text-secondary transition-colors">
+                        +250 788 502 229
+                    </a>
+                </div>
+                
+                <!-- Email -->
+                <div class="group card-hover text-center p-8 bg-gradient-to-br from-accent/5 to-green-600/5 rounded-3xl shadow-lg border border-accent/20">
+                    <div class="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-accent to-green-600 rounded-3xl mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <i class="fas fa-envelope text-2xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-gray-900 dark:text-white group-hover:text-accent transition-colors">Email</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-2">Send us a message</p>
+                    <a href="mailto:lyceedenyanza2018@gmail.com" class="text-lg font-semibold text-accent hover:text-green-600 transition-colors break-all">
+                        lyceedenyanza2018@gmail.com
+                    </a>
+                </div>
+                
+                <!-- Location -->
+                <div class="group card-hover text-center p-8 bg-gradient-to-br from-warning/5 to-orange-600/5 rounded-3xl shadow-lg border border-warning/20">
+                    <div class="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-warning to-orange-600 rounded-3xl mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <i class="fas fa-map-marker-alt text-2xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-gray-900 dark:text-white group-hover:text-warning transition-colors">Location</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-2">Visit our campus</p>
+                    <p class="text-lg font-semibold text-warning">
+                        Nyanza District, Rwanda
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Additional Contact Info -->
+            <div class="mt-16 text-center">
+                <div class="bg-gradient-to-r from-primary/10 to-secondary/10 p-8 rounded-3xl border border-primary/20">
+                    <h3 class="text-2xl font-bold mb-4 text-gray-900 dark:text-white">Office Hours</h3>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <h4 class="font-semibold text-primary mb-2">Weekdays</h4>
+                            <p class="text-gray-600 dark:text-gray-300">Monday - Friday: 8:00 AM - 5:00 PM</p>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-primary mb-2">Weekend</h4>
+                            <p class="text-gray-600 dark:text-gray-300">Saturday: 9:00 AM - 2:00 PM</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-16 relative overflow-hidden">
+        <!-- Background Pattern -->
+        <div class="absolute inset-0 opacity-5">
+            <div class="pattern-dots w-full h-full"></div>
+        </div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                <!-- School Info -->
+                <div class="lg:col-span-2">
+                    <div class="flex items-center mb-6">
+                        <img src="https://i.ibb.co/hxHgzKxb/image.png" alt="Logo" class="h-12 w-12 mr-4 rounded-full">
+                        <div>
+                            <h3 class="text-2xl font-bold">LYCEE DE NYANZA</h3>
+                            <p class="text-gray-400">Excellence in Education</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 leading-relaxed mb-6 max-w-md">
+                        Empowering students with knowledge, skills, and values to become responsible global citizens and leaders in their communities.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-primary rounded-full flex items-center justify-center hover:bg-secondary transition-colors">
+                            <i class="fab fa-facebook text-white"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-primary rounded-full flex items-center justify-center hover:bg-secondary transition-colors">
+                            <i class="fab fa-twitter text-white"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-primary rounded-full flex items-center justify-center hover:bg-secondary transition-colors">
+                            <i class="fab fa-instagram text-white"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-primary rounded-full flex items-center justify-center hover:bg-secondary transition-colors">
+                            <i class="fab fa-linkedin text-white"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-lg font-bold mb-6">Quick Links</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#home" class="text-gray-400 hover:text-white transition-colors flex items-center"><i class="fas fa-chevron-right mr-2 text-xs"></i>Home</a></li>
+                        <li><a href="#about" class="text-gray-400 hover:text-white transition-colors flex items-center"><i class="fas fa-chevron-right mr-2 text-xs"></i>About Us</a></li>
+                        <li><a href="#director" class="text-gray-400 hover:text-white transition-colors flex items-center"><i class="fas fa-chevron-right mr-2 text-xs"></i>Director</a></li>
+                        <li><a href="#courses" class="text-gray-400 hover:text-white transition-colors flex items-center"><i class="fas fa-chevron-right mr-2 text-xs"></i>Courses</a></li>
+                        <li><a href="#admission" class="text-gray-400 hover:text-white transition-colors flex items-center"><i class="fas fa-chevron-right mr-2 text-xs"></i>Admission</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-white transition-colors flex items-center"><i class="fas fa-chevron-right mr-2 text-xs"></i>Contact</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Contact Info -->
+                <div>
+                    <h4 class="text-lg font-bold mb-6">Contact Info</h4>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <i class="fas fa-phone text-primary mr-3 mt-1"></i>
+                            <div>
+                                <p class="text-gray-400">Phone</p>
+                                <p class="text-white font-medium">+250 788 502 229</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-envelope text-primary mr-3 mt-1"></i>
+                            <div>
+                                <p class="text-gray-400">Email</p>
+                                <p class="text-white font-medium break-all">lyceedenyanza2018@gmail.com</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-primary mr-3 mt-1"></i>
+                            <div>
+                                <p class="text-gray-400">Location</p>
+                                <p class="text-white font-medium">Nyanza District, Rwanda</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Bottom Footer -->
+            <div class="border-t border-gray-800 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-gray-400 text-center md:text-left">
+                        &copy; 2024 LYCEE DE NYANZA. All rights reserved.
+                    </p>
+                    <div class="flex items-center mt-4 md:mt-0">
+                        <span class="text-gray-400 mr-2">Made with</span>
+                        <i class="fas fa-heart text-red-500 mx-1"></i>
+                        <span class="text-gray-400">for education</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 hidden">
+        <div class="bg-white dark:bg-gray-800 p-8 rounded-3xl shadow-2xl max-w-md w-full mx-4 transform scale-95 transition-transform">
+            <div class="text-center">
+                <div class="w-20 h-20 bg-gradient-to-br from-accent to-green-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <i class="fas fa-check-circle text-3xl text-white"></i>
+                </div>
+                <h3 class="text-2xl font-bold mb-4 text-gray-900 dark:text-white">Application Submitted Successfully!</h3>
+                <p class="text-gray-600 dark:text-gray-300 mb-8 leading-relaxed">
+                    Your application has been sent via WhatsApp. Our admissions team will contact you soon with further instructions.
+                </p>
+                <button onclick="closeModal()" class="bg-primary text-white px-8 py-3 rounded-xl hover:bg-secondary transition-all duration-300 shadow-lg font-semibold">
+                    <i class="fas fa-times mr-2"></i>
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Dark mode support
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.classList.add('dark');
+        }
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+            if (event.matches) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        });
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offsetTop = target.offsetTop - 80; // Account for fixed header
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                    // Close mobile menu if open
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+
+        // Form step navigation
+        const formSteps = document.querySelectorAll('.form-step');
+        const stepNumbers = document.querySelectorAll('.step-number');
+        const stepNames = document.querySelectorAll('.step-name');
+        const progressBar = document.querySelector('.progress-bar');
+        let currentStep = 1;
+
+        function showStep(step) {
+            formSteps.forEach(formStep => {
+                formStep.classList.remove('active');
+                if (parseInt(formStep.dataset.step) === step) {
+                    formStep.classList.add('active');
+                }
+            });
+            
+            // Update progress indicators
+            stepNumbers.forEach((number, index) => {
+                if (index < step) {
+                    number.classList.remove('bg-gray-200', 'dark:bg-gray-700', 'text-gray-600', 'dark:text-gray-400');
+                    number.classList.add('bg-primary', 'text-white');
+                } else {
+                    number.classList.remove('bg-primary', 'text-white');
+                    number.classList.add('bg-gray-200', 'dark:bg-gray-700', 'text-gray-600', 'dark:text-gray-400');
+                }
+            });
+            
+            stepNames.forEach((name, index) => {
+                if (index < step - 1) {
+                    name.classList.add('text-primary');
+                } else {
+                    name.classList.remove('text-primary');
+                }
+            });
+            
+            // Update progress bar
+            const progressPercentage = ((step - 1) / (formSteps.length - 1)) * 100;
+            progressBar.style.width = `${progressPercentage}%`;
+        }
+
+        document.querySelectorAll('.next-step').forEach(button => {
+            button.addEventListener('click', () => {
+                const currentFormStep = document.querySelector(`.form-step[data-step="${currentStep}"]`);
+                const inputs = currentFormStep.querySelectorAll('[required]');
+                let isValid = true;
+                
+                inputs.forEach(input => {
+                    if (!input.value.trim()) {
+                        input.classList.add('border-red-500', 'ring-red-500');
+                        input.classList.remove('border-gray-200', 'dark:border-gray-600');
+                        isValid = false;
+                    } else {
+                        input.classList.remove('border-red-500', 'ring-red-500');
+                        input.classList.add('border-gray-200', 'dark:border-gray-600');
+                    }
+                });
+                
+                if (isValid && currentStep < formSteps.length) {
+                    currentStep++;
+                    showStep(currentStep);
+                }
+            });
+        });
+
+        document.querySelectorAll('.prev-step').forEach(button => {
+            button.addEventListener('click', () => {
+                if (currentStep > 1) {
+                    currentStep--;
+                    showStep(currentStep);
+                }
+            });
+        });
+
+        // Form submission to WhatsApp
+        document.getElementById('applicationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            let message = `*🎓 New Application for LYCEE DE NYANZA*\n\n`;
+            
+            message += `*📋 PERSONAL INFORMATION*\n`;
+            message += `👤 *Student Name:* ${formData.get('studentName')}\n`;
+            message += `🎂 *Age:* ${formData.get('age')}\n`;
+            message += `👨 *Father Name:* ${formData.get('fatherName')}\n`;
+            message += `👩 *Mother Name:* ${formData.get('motherName')}\n\n`;
+            
+            message += `*📞 CONTACT INFORMATION*\n`;
+            message += `📧 *Email:* ${formData.get('email')}\n`;
+            message += `📱 *Student Phone:* ${formData.get('phoneNo')}\n`;
+            message += `☎️ *Guardian Phone:* ${formData.get('guardianPhone')}\n`;
+            message += `🏘️ *District:* ${formData.get('district')}\n`;
+            message += `🏠 *Home Address:* ${formData.get('homeAddress')}\n\n`;
+            
+            message += `*🎯 COURSE SELECTION*\n`;
+            message += `💼 *Course:* ${formData.get('course')}\n`;
+            message += `📊 *Level:* ${formData.get('level')}\n\n`;
+            
+            message += `*📅 Application Date:* ${new Date().toLocaleDateString()}\n`;
+            message += `*⏰ Time:* ${new Date().toLocaleTimeString()}\n\n`;
+            message += `_Application submitted via LYCEE DE NYANZA official website_`;
+            
+            const whatsappUrl = `https://wa.me/250788502229?text=${encodeURIComponent(message)}`;
+            
+            // Open WhatsApp
+            window.open(whatsappUrl, '_blank');
+            
+            // Show success modal
+            const modal = document.getElementById('successModal');
+            modal.classList.remove('hidden');
+            modal.querySelector('.transform').classList.remove('scale-95');
+            modal.querySelector('.transform').classList.add('scale-100');
+            
+            // Reset form
+            this.reset();
+            currentStep = 1;
+            showStep(currentStep);
+        });
+
+        function closeModal() {
+            const modal = document.getElementById('successModal');
+            modal.querySelector('.transform').classList.remove('scale-100');
+            modal.querySelector('.transform').classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 200);
+        }
+
+        function openPayment() {
+            window.open('https://urubutopay.rw/pay-now?origin=internal', '_blank');
+        }
+
+        // Counter Animation
+        function animateCounters() {
+            const counters = document.querySelectorAll('.counter');
+            const speed = 200;
+
+            counters.forEach(counter => {
+                const animate = () => {
+                    const value = +counter.getAttribute('data-target');
+                    const data = +counter.innerText;
+                    const time = value / speed;
+
+                    if (data < value) {
+                        counter.innerText = Math.ceil(data + time);
+                        setTimeout(animate, 1);
+                    } else {
+                        counter.innerText = value;
+                        if (value === 95) {
+                            counter.innerText = value + '%';
+                        }
+                    }
+                }
+                animate();
+            });
+        }
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    if (entry.target.id === 'about') {
+                        animateCounters();
+                    }
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const aboutSection = document.getElementById('about');
+            if (aboutSection) {
+                observer.observe(aboutSection);
+            }
+        });
+
+        // Active navigation highlighting
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                const sectionHeight = section.clientHeight;
+                if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('text-primary', 'bg-primary/10');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('text-primary', 'bg-primary/10');
+                }
+            });
+        });
+
+        // Add custom scrollbar styles
+        const style = document.createElement('style');
+        style.textContent = `
+            .custom-scrollbar::-webkit-scrollbar {
+                width: 4px;
+            }
+            .custom-scrollbar::-webkit-scrollbar-track {
+                background: #f1f1f1;
+                border-radius: 10px;
+            }
+            .custom-scrollbar::-webkit-scrollbar-thumb {
+                background: #5D5CDE;
+                border-radius: 10px;
+            }
+            .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+                background: #4338CA;
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
