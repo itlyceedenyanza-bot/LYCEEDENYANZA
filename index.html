@@ -13,6 +13,20 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     
+    <!--Start of Tawk.to Script-->
+    <script type="text/javascript">
+    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    (function(){
+    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+    s1.async=true;
+    s1.src='https://embed.tawk.to/689ecc5ebee2f519237b6b53/1j2m4slcq';
+    s1.charset='UTF-8';
+    s1.setAttribute('crossorigin','*');
+    s0.parentNode.insertBefore(s1,s0);
+    })();
+    </script>
+    <!--End of Tawk.to Script-->
+    
     <script>
         tailwind.config = {
             theme: {
@@ -44,6 +58,7 @@
                         'fade-in': 'fadeIn 0.6s ease-out',
                         'slide-up': 'slideUp 0.6s ease-out',
                         'float': 'float 3s ease-in-out infinite',
+                        'pulse': 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
                     },
                     keyframes: {
                         fadeIn: {
@@ -147,6 +162,9 @@
             transition: all 0.3s ease;
             border: none;
             cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .btn-primary:hover {
@@ -163,6 +181,9 @@
             border-radius: 0.5rem;
             transition: all 0.3s ease;
             cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .btn-secondary:hover {
@@ -204,6 +225,16 @@
             outline: none;
             border-color: #10b981;
             box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+        }
+
+        .form-input.error {
+            border-color: #ef4444;
+        }
+
+        .error-message {
+            color: #ef4444;
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
         }
 
         .hamburger-line {
@@ -301,6 +332,16 @@
             background: #10b981;
         }
 
+        /* Form Steps */
+        .form-step {
+            display: none;
+        }
+        
+        .form-step.active {
+            display: block;
+            animation: fadeIn 0.5s ease-out;
+        }
+
         /* Modal Styles */
         .modal {
             position: fixed;
@@ -314,6 +355,14 @@
             justify-content: center;
             z-index: 1000;
             padding: 1rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .modal.show {
+            opacity: 1;
+            visibility: visible;
         }
 
         .modal-content {
@@ -323,6 +372,12 @@
             max-width: 500px;
             width: 100%;
             text-align: center;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+
+        .modal.show .modal-content {
+            transform: scale(1);
         }
 
         /* Animation Classes */
@@ -337,6 +392,32 @@
             transform: translateY(0);
         }
 
+        /* Loading State */
+        .loading {
+            position: relative;
+            pointer-events: none;
+            opacity: 0.7;
+        }
+
+        .loading::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 20px;
+            height: 20px;
+            border: 2px solid #f3f4f6;
+            border-top: 2px solid #10b981;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
         /* Responsive Utilities */
         @media (max-width: 768px) {
             .hero-title {
@@ -348,6 +429,12 @@
                 font-size: 2rem;
                 line-height: 1.2;
             }
+        }
+
+        /* Success State */
+        .success {
+            border-color: #10b981;
+            background-color: #f0fdf4;
         }
     </style>
 </head>
@@ -414,7 +501,7 @@
                 <!-- Left Content -->
                 <div class="space-y-8 animate-on-scroll">
                     <div class="inline-flex items-center bg-green-100 rounded-full px-4 py-2">
-                        <div class="w-2 h-2 bg-green-500 rounded-full mr-2"></div>
+                        <div class="w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse"></div>
                         <span class="text-green-700 font-medium text-sm">Excellence in Modern Education</span>
                     </div>
                     
@@ -1211,17 +1298,17 @@
             <div class="mb-12 animate-on-scroll">
                 <div class="flex justify-between items-center max-w-2xl mx-auto relative">
                     <div class="progress-step">
-                        <div class="step-number active">1</div>
+                        <div class="step-number active" id="step1">1</div>
                         <span class="text-sm font-medium">Personal</span>
-                        <div class="progress-line"></div>
+                        <div class="progress-line" id="line1"></div>
                     </div>
                     <div class="progress-step">
-                        <div class="step-number">2</div>
+                        <div class="step-number" id="step2">2</div>
                         <span class="text-sm font-medium">Contact</span>
-                        <div class="progress-line"></div>
+                        <div class="progress-line" id="line2"></div>
                     </div>
                     <div class="progress-step">
-                        <div class="step-number">3</div>
+                        <div class="step-number" id="step3">3</div>
                         <span class="text-sm font-medium">Course</span>
                     </div>
                 </div>
@@ -1243,29 +1330,36 @@
                             <label class="block text-sm font-medium mb-2">Name of the Student *</label>
                             <input type="text" name="studentName" required 
                                    class="form-input" placeholder="Enter full name">
+                            <div class="error-message hidden">Please enter your full name</div>
                         </div>
                         
                         <div>
                             <label class="block text-sm font-medium mb-2">Age *</label>
                             <input type="number" name="age" required min="14" max="30"
                                    class="form-input" placeholder="Enter age">
+                            <div class="error-message hidden">Please enter a valid age (14-30)</div>
                         </div>
                         
                         <div>
                             <label class="block text-sm font-medium mb-2">Father Name *</label>
                             <input type="text" name="fatherName" required 
                                    class="form-input" placeholder="Enter father's name">
+                            <div class="error-message hidden">Please enter father's name</div>
                         </div>
                         
                         <div class="sm:col-span-2">
                             <label class="block text-sm font-medium mb-2">Mother Name *</label>
                             <input type="text" name="motherName" required 
                                    class="form-input" placeholder="Enter mother's name">
+                            <div class="error-message hidden">Please enter mother's name</div>
                         </div>
                     </div>
                     
                     <div class="flex justify-end mt-8">
-                        <button type="button" class="next-step btn-primary">Next Step</button>
+                        <button type="button" id="nextBtn1" class="btn-primary">
+                            Next Step
+                            <i class="fas fa-arrow-right ml-2"></i>
+                        </button>
                     </div>
                 </div>
                 
@@ -1283,31 +1377,41 @@
                         <div>
                             <label class="block text-sm font-medium mb-2">Your Phone Number *</label>
                             <input type="tel" name="phoneNo" required 
-                                   class="form-input" placeholder="Enter phone number">
+                                   class="form-input" placeholder="+250 XXX XXX XXX">
+                            <div class="error-message hidden">Please enter a valid phone number</div>
                         </div>
                         
                         <div>
                             <label class="block text-sm font-medium mb-2">Guardian Phone Number *</label>
                             <input type="tel" name="guardianPhone" required 
-                                   class="form-input" placeholder="Enter guardian's phone">
+                                   class="form-input" placeholder="+250 XXX XXX XXX">
+                            <div class="error-message hidden">Please enter guardian's phone number</div>
                         </div>
                         
                         <div>
                             <label class="block text-sm font-medium mb-2">District *</label>
                             <input type="text" name="district" required 
                                    class="form-input" placeholder="Enter district">
+                            <div class="error-message hidden">Please enter your district</div>
                         </div>
                         
                         <div class="sm:col-span-2">
                             <label class="block text-sm font-medium mb-2">Home Address *</label>
                             <textarea name="homeAddress" required rows="4" 
                                       class="form-input resize-none" placeholder="Enter complete home address"></textarea>
+                            <div class="error-message hidden">Please enter your complete address</div>
                         </div>
                     </div>
                     
                     <div class="flex justify-between mt-8">
-                        <button type="button" class="prev-step btn-secondary">Previous</button>
-                        <button type="button" class="next-step btn-primary">Next Step</button>
+                        <button type="button" id="prevBtn1" class="btn-secondary">
+                            <i class="fas fa-arrow-left mr-2"></i>
+                            Previous
+                        </button>
+                        <button type="button" id="nextBtn2" class="btn-primary">
+                            Next Step
+                            <i class="fas fa-arrow-right ml-2"></i>
+                        </button>
                     </div>
                 </div>
                 
@@ -1337,6 +1441,7 @@
                                 <option value="AUTOMOBILE AND TECHNOLOGY (AUT)">AUTOMOBILE AND TECHNOLOGY (AUT)</option>
                                 <option value="BUILDING AND CONSTRUCTION (BDC)">BUILDING AND CONSTRUCTION (BDC)</option>
                             </select>
+                            <div class="error-message hidden">Please select a course</div>
                         </div>
                         
                         <div>
@@ -1350,12 +1455,16 @@
                                 <option value="Senior 5">Senior 5</option>
                                 <option value="Senior 6">Senior 6</option>
                             </select>
+                            <div class="error-message hidden">Please select a level</div>
                         </div>
                     </div>
                     
                     <div class="flex justify-between mt-8">
-                        <button type="button" class="prev-step btn-secondary">Previous</button>
-                        <button type="submit" class="btn-primary">
+                        <button type="button" id="prevBtn2" class="btn-secondary">
+                            <i class="fas fa-arrow-left mr-2"></i>
+                            Previous
+                        </button>
+                        <button type="submit" id="submitBtn" class="btn-primary">
                             <i class="fas fa-paper-plane mr-2"></i>
                             Submit Application
                         </button>
@@ -1562,16 +1671,19 @@
     </footer>
 
     <!-- Success Modal -->
-    <div id="successModal" class="modal hidden">
+    <div id="successModal" class="modal">
         <div class="modal-content">
             <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
                 <i class="fas fa-check-circle text-green-600 text-3xl"></i>
             </div>
             <h3 class="text-2xl font-bold mb-4">Application Submitted Successfully!</h3>
             <p class="text-gray-600 mb-8 leading-relaxed">
-                Your application has been sent via WhatsApp. Our admissions team will contact you soon.
+                Your application has been sent via WhatsApp. Our admissions team will contact you soon with further instructions.
             </p>
-            <button onclick="closeModal()" class="btn-primary">Close</button>
+            <button onclick="closeModal()" class="btn-primary">
+                <i class="fas fa-check mr-2"></i>
+                Close
+            </button>
         </div>
     </div>
 
@@ -1667,89 +1779,157 @@
             }
         }
 
-        // Form Handler
+        // Enhanced Form Handler
         class ApplicationForm {
             constructor() {
                 this.form = document.getElementById('applicationForm');
-                this.formSteps = document.querySelectorAll('.form-step');
-                this.progressSteps = document.querySelectorAll('.step-number');
                 this.currentStep = 1;
+                this.totalSteps = 3;
                 this.init();
             }
 
             init() {
-                this.setupStepNavigation();
-                this.setupFormSubmission();
+                this.setupEventListeners();
             }
 
-            setupStepNavigation() {
-                document.querySelectorAll('.next-step').forEach(button => {
-                    button.addEventListener('click', () => this.nextStep());
+            setupEventListeners() {
+                // Next buttons
+                document.getElementById('nextBtn1').addEventListener('click', () => {
+                    if (this.validateStep(1)) {
+                        this.goToStep(2);
+                    }
                 });
 
-                document.querySelectorAll('.prev-step').forEach(button => {
-                    button.addEventListener('click', () => this.prevStep());
+                document.getElementById('nextBtn2').addEventListener('click', () => {
+                    if (this.validateStep(2)) {
+                        this.goToStep(3);
+                    }
                 });
-            }
 
-            setupFormSubmission() {
+                // Previous buttons
+                document.getElementById('prevBtn1').addEventListener('click', () => {
+                    this.goToStep(1);
+                });
+
+                document.getElementById('prevBtn2').addEventListener('click', () => {
+                    this.goToStep(2);
+                });
+
+                // Form submission
                 this.form.addEventListener('submit', (e) => this.handleSubmit(e));
+
+                // Real-time validation
+                this.form.querySelectorAll('input, select, textarea').forEach(input => {
+                    input.addEventListener('blur', () => this.validateField(input));
+                    input.addEventListener('input', () => this.clearFieldError(input));
+                });
             }
 
-            validateCurrentStep() {
-                const currentFormStep = document.querySelector(`.form-step[data-step="${this.currentStep}"]`);
-                const inputs = currentFormStep.querySelectorAll('[required]');
+            validateField(field) {
+                const value = field.value.trim();
+                const isRequired = field.hasAttribute('required');
+                let isValid = true;
+                let errorMessage = '';
+
+                if (isRequired && !value) {
+                    isValid = false;
+                    errorMessage = 'This field is required';
+                } else if (field.type === 'tel' && value) {
+                    const phoneRegex = /^[\+]?[0-9\s\-\(\)]{10,}$/;
+                    if (!phoneRegex.test(value)) {
+                        isValid = false;
+                        errorMessage = 'Please enter a valid phone number';
+                    }
+                } else if (field.type === 'number' && value) {
+                    const num = parseInt(value);
+                    if (num < 14 || num > 30) {
+                        isValid = false;
+                        errorMessage = 'Age must be between 14 and 30';
+                    }
+                }
+
+                if (!isValid) {
+                    this.showFieldError(field, errorMessage);
+                } else {
+                    this.clearFieldError(field);
+                }
+
+                return isValid;
+            }
+
+            showFieldError(field, message) {
+                field.classList.add('error');
+                const errorElement = field.parentNode.querySelector('.error-message');
+                if (errorElement) {
+                    errorElement.textContent = message;
+                    errorElement.classList.remove('hidden');
+                }
+            }
+
+            clearFieldError(field) {
+                field.classList.remove('error');
+                const errorElement = field.parentNode.querySelector('.error-message');
+                if (errorElement) {
+                    errorElement.classList.add('hidden');
+                }
+            }
+
+            validateStep(step) {
+                const stepElement = document.querySelector(`.form-step[data-step="${step}"]`);
+                const fields = stepElement.querySelectorAll('[required]');
                 let isValid = true;
 
-                inputs.forEach(input => {
-                    if (!input.value.trim()) {
-                        input.style.borderColor = '#ef4444';
+                fields.forEach(field => {
+                    if (!this.validateField(field)) {
                         isValid = false;
-                    } else {
-                        input.style.borderColor = '#e5e7eb';
                     }
                 });
 
                 return isValid;
             }
 
-            nextStep() {
-                if (this.validateCurrentStep() && this.currentStep < this.formSteps.length) {
-                    this.currentStep++;
-                    this.showStep(this.currentStep);
-                }
-            }
-
-            prevStep() {
-                if (this.currentStep > 1) {
-                    this.currentStep--;
-                    this.showStep(this.currentStep);
-                }
-            }
-
-            showStep(step) {
-                this.formSteps.forEach(formStep => {
-                    formStep.classList.remove('active');
-                    if (parseInt(formStep.dataset.step) === step) {
-                        formStep.classList.add('active');
-                    }
+            goToStep(step) {
+                // Hide all steps
+                document.querySelectorAll('.form-step').forEach(stepEl => {
+                    stepEl.classList.remove('active');
                 });
-                
-                this.progressSteps.forEach((progressStep, index) => {
-                    if (index + 1 <= step) {
-                        progressStep.classList.add('active');
+
+                // Show target step
+                document.querySelector(`.form-step[data-step="${step}"]`).classList.add('active');
+
+                // Update progress
+                this.updateProgress(step);
+                this.currentStep = step;
+            }
+
+            updateProgress(step) {
+                // Update step numbers
+                for (let i = 1; i <= this.totalSteps; i++) {
+                    const stepElement = document.getElementById(`step${i}`);
+                    const lineElement = document.getElementById(`line${i}`);
+                    
+                    if (i <= step) {
+                        stepElement.classList.add('active');
+                        if (lineElement) lineElement.classList.add('active');
                     } else {
-                        progressStep.classList.remove('active');
+                        stepElement.classList.remove('active');
+                        if (lineElement) lineElement.classList.remove('active');
                     }
-                });
+                }
             }
 
             handleSubmit(e) {
                 e.preventDefault();
                 
-                if (!this.validateCurrentStep()) {
+                if (!this.validateStep(3)) {
                     return;
                 }
+
+                // Show loading state
+                const submitBtn = document.getElementById('submitBtn');
+                const originalText = submitBtn.innerHTML;
+                submitBtn.classList.add('loading');
+                submitBtn.disabled = true;
 
                 const formData = new FormData(this.form);
                 let message = `*🎓 New Application for LYCEE DE NYANZA*\n\n`;
@@ -1776,20 +1956,33 @@
                 
                 const whatsappUrl = `https://wa.me/250788502229?text=${encodeURIComponent(message)}`;
                 
-                window.open(whatsappUrl, '_blank');
-                this.showSuccessModal();
-                this.resetForm();
+                // Simulate processing time
+                setTimeout(() => {
+                    window.open(whatsappUrl, '_blank');
+                    this.showSuccessModal();
+                    this.resetForm();
+                    
+                    // Reset button
+                    submitBtn.classList.remove('loading');
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = originalText;
+                }, 1500);
             }
 
             showSuccessModal() {
                 const modal = document.getElementById('successModal');
-                modal.classList.remove('hidden');
+                modal.classList.add('show');
             }
 
             resetForm() {
                 this.form.reset();
                 this.currentStep = 1;
-                this.showStep(this.currentStep);
+                this.goToStep(1);
+                
+                // Clear all errors
+                this.form.querySelectorAll('input, select, textarea').forEach(field => {
+                    this.clearFieldError(field);
+                });
             }
         }
 
@@ -1888,7 +2081,7 @@
 
         function closeModal() {
             const modal = document.getElementById('successModal');
-            modal.classList.add('hidden');
+            modal.classList.remove('show');
         }
 
         // Initialize all components when DOM is loaded
@@ -1900,26 +2093,6 @@
             new SmoothScrolling();
             new ScrollAnimation();
         });
-
-        // Show/hide form steps
-        document.addEventListener('DOMContentLoaded', function() {
-            const formSteps = document.querySelectorAll('.form-step');
-            formSteps.forEach((step, index) => {
-                if (index !== 0) {
-                    step.style.display = 'none';
-                }
-            });
-        });
     </script>
-
-    <style>
-        .form-step {
-            display: none;
-        }
-        
-        .form-step.active {
-            display: block;
-        }
-    </style>
 </body>
 </html>
