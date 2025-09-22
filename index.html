@@ -603,6 +603,27 @@
             border-color: rgba(255, 255, 255, 0.1);
         }
 
+        /* Gallery Filter Styles */
+        .gallery-filter {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .gallery-filter.active {
+            background: linear-gradient(135deg, #10b981, #059669) !important;
+            color: white !important;
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
+        }
+
+        .gallery-item {
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .gallery-item.hidden {
+            opacity: 0;
+            transform: scale(0.8);
+            pointer-events: none;
+        }
+
         /* Scroll Animations */
         .animate-on-scroll {
             opacity: 0;
@@ -1168,99 +1189,262 @@
         <div class="container-max">
             <!-- Section Header -->
             <div class="text-center mb-20 animate-on-scroll">
-                <div class="inline-flex items-center bg-green-100 dark:bg-green-900/50 rounded-full px-6 py-3 mb-6 hover-glow">
-                    <i class="fas fa-images text-green-600 dark:text-green-400 mr-3"></i>
-                    <span class="text-green-700 dark:text-green-300 font-medium">Campus Life</span>
+                <div class="inline-flex items-center bg-gradient-to-r from-emerald-100 to-teal-100 dark:from-emerald-900/50 dark:to-teal-900/50 rounded-full px-8 py-4 mb-8 shadow-lg">
+                    <i class="fas fa-images text-emerald-600 dark:text-emerald-400 mr-3 text-lg"></i>
+                    <span class="text-emerald-700 dark:text-emerald-300 font-semibold tracking-wide">Campus Showcase</span>
                 </div>
                 <h2 class="section-title text-4xl lg:text-6xl font-bold mb-8">
-                    Our <span class="gradient-text">Gallery</span>
+                    Our <span class="bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 bg-clip-text text-transparent">Gallery</span>
                 </h2>
-                <p class="text-2xl text-gray-600 dark:text-gray-400 max-w-4xl mx-auto leading-relaxed">
-                    Explore our modern facilities and vibrant campus life through these images
+                <p class="text-xl text-gray-600 dark:text-gray-400 max-w-4xl mx-auto leading-relaxed">
+                    Discover our world-class facilities, vibrant student life, and academic excellence through our visual showcase
                 </p>
+            </div>
+
+            <!-- Gallery Filter Options -->
+            <div class="flex flex-wrap justify-center gap-4 mb-16 animate-on-scroll">
+                <button class="gallery-filter active px-8 py-3 rounded-full bg-gradient-to-r from-emerald-500 to-teal-500 text-white font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1" data-filter="all">
+                    <i class="fas fa-th-large mr-2"></i>All Photos
+                </button>
+                <button class="gallery-filter px-8 py-3 rounded-full bg-white dark:bg-slate-700 text-gray-700 dark:text-gray-300 font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 hover:bg-emerald-50 dark:hover:bg-emerald-900/20" data-filter="labs">
+                    <i class="fas fa-laptop-code mr-2"></i>Labs
+                </button>
+                <button class="gallery-filter px-8 py-3 rounded-full bg-white dark:bg-slate-700 text-gray-700 dark:text-gray-300 font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 hover:bg-emerald-50 dark:hover:bg-emerald-900/20" data-filter="campus">
+                    <i class="fas fa-university mr-2"></i>Campus
+                </button>
+                <button class="gallery-filter px-8 py-3 rounded-full bg-white dark:bg-slate-700 text-gray-700 dark:text-gray-300 font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 hover:bg-emerald-50 dark:hover:bg-emerald-900/20" data-filter="activities">
+                    <i class="fas fa-users mr-2"></i>Activities
+                </button>
+                <button class="gallery-filter px-8 py-3 rounded-full bg-white dark:bg-slate-700 text-gray-700 dark:text-gray-300 font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 hover:bg-emerald-50 dark:hover:bg-emerald-900/20" data-filter="facilities">
+                    <i class="fas fa-building mr-2"></i>Facilities
+                </button>
             </div>
             
             <!-- Gallery Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="galleryGrid">
                 <!-- Computer Science Lab -->
-                <div class="card overflow-hidden animate-on-scroll hover-lift" style="animation-delay: 0.1s;">
-                    <div class="relative group">
+                <div class="gallery-item card overflow-hidden animate-on-scroll hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2" data-category="labs" style="animation-delay: 0.1s;">
+                    <div class="relative group overflow-hidden">
                         <img src="https://iili.io/FttCfCg.jpg" 
                              alt="Computer Science Lab" 
-                             class="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-500">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                             class="w-full h-72 object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-emerald-600/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
+                        <div class="absolute bottom-0 left-0 right-0 p-6 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-500">
+                            <h4 class="font-bold text-lg mb-2">Advanced Computing</h4>
+                            <p class="text-sm opacity-90">50+ Modern Workstations</p>
+                        </div>
+                        <div class="absolute top-4 right-4 w-12 h-12 bg-white/90 dark:bg-slate-800/90 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-4 group-hover:translate-x-0">
+                            <i class="fas fa-expand-alt text-emerald-600 dark:text-emerald-400"></i>
+                        </div>
                     </div>
-                    <div class="p-8">
-                        <h3 class="text-2xl font-bold mb-4 text-gray-900 dark:text-gray-100">Computer Science Lab</h3>
-                        <p class="text-gray-600 dark:text-gray-400 leading-relaxed mb-6 text-lg">
-                            State-of-the-art computer laboratory equipped with modern hardware and software for hands-on learning.
+                    <div class="p-6 bg-gradient-to-br from-white to-gray-50 dark:from-slate-800 dark:to-slate-700">
+                        <h3 class="text-xl font-bold mb-3 text-gray-900 dark:text-gray-100">Computer Science Lab</h3>
+                        <p class="text-gray-600 dark:text-gray-400 leading-relaxed mb-4">
+                            State-of-the-art computer laboratory with cutting-edge hardware and software for immersive learning experiences.
                         </p>
-                        <div class="flex items-center justify-between">
-                            <span class="bg-green-100 dark:bg-green-900/50 text-green-700 dark:text-green-300 px-4 py-2 rounded-full text-sm font-medium">50+ Computers</span>
-                            <span class="bg-green-100 dark:bg-green-900/50 text-green-700 dark:text-green-300 px-4 py-2 rounded-full text-sm font-medium">High-Speed Internet</span>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-gradient-to-r from-emerald-100 to-teal-100 dark:from-emerald-900/50 dark:to-teal-900/50 text-emerald-700 dark:text-emerald-300 rounded-full text-sm font-medium">50+ Computers</span>
+                            <span class="px-3 py-1 bg-gradient-to-r from-blue-100 to-cyan-100 dark:from-blue-900/50 dark:to-cyan-900/50 text-blue-700 dark:text-blue-300 rounded-full text-sm font-medium">High-Speed WiFi</span>
                         </div>
                     </div>
                 </div>
 
-                <!-- Software Development -->
-                <div class="card overflow-hidden animate-on-scroll hover-lift" style="animation-delay: 0.2s;">
-                    <div class="relative group">
+                <!-- Electrical Technology Lab -->
+                <div class="gallery-item card overflow-hidden animate-on-scroll hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2" data-category="labs" style="animation-delay: 0.2s;">
+                    <div class="relative group overflow-hidden">
                         <img src="https://iili.io/K7XIK4s.png" 
-                             alt="Software Development" 
-                             class="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-500">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                             alt="Electrical Technology Lab" 
+                             class="w-full h-72 object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-yellow-600/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
+                        <div class="absolute bottom-0 left-0 right-0 p-6 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-500">
+                            <h4 class="font-bold text-lg mb-2">Electrical Engineering</h4>
+                            <p class="text-sm opacity-90">Hands-on Power Systems</p>
+                        </div>
+                        <div class="absolute top-4 right-4 w-12 h-12 bg-white/90 dark:bg-slate-800/90 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-4 group-hover:translate-x-0">
+                            <i class="fas fa-expand-alt text-yellow-600 dark:text-yellow-400"></i>
+                        </div>
                     </div>
-                    <div class="p-8">
-                        <h3 class="text-2xl font-bold mb-4 text-gray-900 dark:text-gray-100">ELT (Electrical Technology</h3>
-                        <p class="text-gray-600 dark:text-gray-400 leading-relaxed mb-6 text-lg">
-                            Students working on real-world electric to give best powerful enery of power and better production for best future.
+                    <div class="p-6 bg-gradient-to-br from-white to-gray-50 dark:from-slate-800 dark:to-slate-700">
+                        <h3 class="text-xl font-bold mb-3 text-gray-900 dark:text-gray-100">Electrical Technology Lab</h3>
+                        <p class="text-gray-600 dark:text-gray-400 leading-relaxed mb-4">
+                            Advanced electrical systems lab where students master power generation, distribution, and modern energy solutions.
                         </p>
-                        <div class="flex items-center justify-between">
-                            <span class="bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300 px-4 py-2 rounded-full text-sm font-medium">Live Projects</span>
-                            <span class="bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300 px-4 py-2 rounded-full text-sm font-medium">Modern Tools</span>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-gradient-to-r from-yellow-100 to-orange-100 dark:from-yellow-900/50 dark:to-orange-900/50 text-yellow-700 dark:text-yellow-300 rounded-full text-sm font-medium">Live Projects</span>
+                            <span class="px-3 py-1 bg-gradient-to-r from-orange-100 to-red-100 dark:from-orange-900/50 dark:to-red-900/50 text-orange-700 dark:text-orange-300 rounded-full text-sm font-medium">Modern Tools</span>
                         </div>
                     </div>
                 </div>
 
-                <!-- Interactive Learning -->
-                <div class="card overflow-hidden animate-on-scroll hover-lift" style="animation-delay: 0.3s;">
-                    <div class="relative group">
+                <!-- Interactive Classroom -->
+                <div class="gallery-item card overflow-hidden animate-on-scroll hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2" data-category="facilities" style="animation-delay: 0.3s;">
+                    <div class="relative group overflow-hidden">
                         <img src="https://pfst.cf2.poecdn.net/base/image/e9c4d69f73f3cb27ccc3cdf85ad90f18c4bb14083b98e9bfcf4e548b6db9f279?w=1920&h=2560" 
-                             alt="Interactive Learning" 
-                             class="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-500">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                             alt="Interactive Learning Environment" 
+                             class="w-full h-72 object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-purple-600/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
+                        <div class="absolute bottom-0 left-0 right-0 p-6 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-500">
+                            <h4 class="font-bold text-lg mb-2">Smart Classrooms</h4>
+                            <p class="text-sm opacity-90">Interactive Learning Hub</p>
+                        </div>
+                        <div class="absolute top-4 right-4 w-12 h-12 bg-white/90 dark:bg-slate-800/90 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-4 group-hover:translate-x-0">
+                            <i class="fas fa-expand-alt text-purple-600 dark:text-purple-400"></i>
+                        </div>
                     </div>
-                    <div class="p-8">
-                        <h3 class="text-2xl font-bold mb-4 text-gray-900 dark:text-gray-100">Interactive Learning</h3>
-                        <p class="text-gray-600 dark:text-gray-400 leading-relaxed mb-6 text-lg">
-                            Modern classrooms featuring interactive learning environments and collaborative projects.
+                    <div class="p-6 bg-gradient-to-br from-white to-gray-50 dark:from-slate-800 dark:to-slate-700">
+                        <h3 class="text-xl font-bold mb-3 text-gray-900 dark:text-gray-100">Interactive Learning</h3>
+                        <p class="text-gray-600 dark:text-gray-400 leading-relaxed mb-4">
+                            Modern smart classrooms equipped with interactive displays and collaborative learning technologies.
                         </p>
-                        <div class="flex items-center justify-between">
-                            <span class="bg-purple-100 dark:bg-purple-900/50 text-purple-700 dark:text-purple-300 px-4 py-2 rounded-full text-sm font-medium">Expert Mentors</span>
-                            <span class="bg-purple-100 dark:bg-purple-900/50 text-purple-700 dark:text-purple-300 px-4 py-2 rounded-full text-sm font-medium">Team Work</span>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-gradient-to-r from-purple-100 to-pink-100 dark:from-purple-900/50 dark:to-pink-900/50 text-purple-700 dark:text-purple-300 rounded-full text-sm font-medium">Expert Mentors</span>
+                            <span class="px-3 py-1 bg-gradient-to-r from-pink-100 to-rose-100 dark:from-pink-900/50 dark:to-rose-900/50 text-pink-700 dark:text-pink-300 rounded-full text-sm font-medium">Team Collaboration</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- Campus Activities -->
-                <div class="card overflow-hidden animate-on-scroll hover-lift" style="animation-delay: 0.4s;">
-                    <div class="relative group">
+                <div class="gallery-item card overflow-hidden animate-on-scroll hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2" data-category="activities" style="animation-delay: 0.4s;">
+                    <div class="relative group overflow-hidden">
                         <img src="https://iili.io/KfJpVgS.jpg" 
-                             alt="Campus Activities" 
-                             class="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-500">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                             alt="Student Activities" 
+                             class="w-full h-72 object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-orange-600/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
+                        <div class="absolute bottom-0 left-0 right-0 p-6 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-500">
+                            <h4 class="font-bold text-lg mb-2">Student Life</h4>
+                            <p class="text-sm opacity-90">Vibrant Community</p>
+                        </div>
+                        <div class="absolute top-4 right-4 w-12 h-12 bg-white/90 dark:bg-slate-800/90 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-4 group-hover:translate-x-0">
+                            <i class="fas fa-expand-alt text-orange-600 dark:text-orange-400"></i>
+                        </div>
                     </div>
-                    <div class="p-8">
-                        <h3 class="text-2xl font-bold mb-4 text-gray-900 dark:text-gray-100">Campus Activities</h3>
-                        <p class="text-gray-600 dark:text-gray-400 leading-relaxed mb-6 text-lg">
-                            Students participating in various campus activities and extracurricular programs.
+                    <div class="p-6 bg-gradient-to-br from-white to-gray-50 dark:from-slate-800 dark:to-slate-700">
+                        <h3 class="text-xl font-bold mb-3 text-gray-900 dark:text-gray-100">Campus Activities</h3>
+                        <p class="text-gray-600 dark:text-gray-400 leading-relaxed mb-4">
+                            Dynamic student engagement through various campus activities, competitions, and extracurricular programs.
                         </p>
-                        <div class="flex items-center justify-between">
-                            <span class="bg-orange-100 dark:bg-orange-900/50 text-orange-700 dark:text-orange-300 px-4 py-2 rounded-full text-sm font-medium">Regular Events</span>
-                            <span class="bg-orange-100 dark:bg-orange-900/50 text-orange-700 dark:text-orange-300 px-4 py-2 rounded-full text-sm font-medium">Competitions</span>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-gradient-to-r from-orange-100 to-amber-100 dark:from-orange-900/50 dark:to-amber-900/50 text-orange-700 dark:text-orange-300 rounded-full text-sm font-medium">Weekly Events</span>
+                            <span class="px-3 py-1 bg-gradient-to-r from-amber-100 to-yellow-100 dark:from-amber-900/50 dark:to-yellow-900/50 text-amber-700 dark:text-amber-300 rounded-full text-sm font-medium">Competitions</span>
                         </div>
                     </div>
                 </div>
+
+                <!-- Engineering Workshop -->
+                <div class="gallery-item card overflow-hidden animate-on-scroll hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2" data-category="labs" style="animation-delay: 0.5s;">
+                    <div class="relative group overflow-hidden">
+                        <img src="https://iili.io/FtXNU4p.png" 
+                             alt="Engineering Workshop" 
+                             class="w-full h-72 object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-indigo-600/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
+                        <div class="absolute bottom-0 left-0 right-0 p-6 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-500">
+                            <h4 class="font-bold text-lg mb-2">Engineering Hub</h4>
+                            <p class="text-sm opacity-90">Innovation Center</p>
+                        </div>
+                        <div class="absolute top-4 right-4 w-12 h-12 bg-white/90 dark:bg-slate-800/90 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-4 group-hover:translate-x-0">
+                            <i class="fas fa-expand-alt text-indigo-600 dark:text-indigo-400"></i>
+                        </div>
+                    </div>
+                    <div class="p-6 bg-gradient-to-br from-white to-gray-50 dark:from-slate-800 dark:to-slate-700">
+                        <h3 class="text-xl font-bold mb-3 text-gray-900 dark:text-gray-100">Engineering Workshop</h3>
+                        <p class="text-gray-600 dark:text-gray-400 leading-relaxed mb-4">
+                            Comprehensive engineering workshop with precision tools and machinery for practical skill development.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-gradient-to-r from-indigo-100 to-blue-100 dark:from-indigo-900/50 dark:to-blue-900/50 text-indigo-700 dark:text-indigo-300 rounded-full text-sm font-medium">Precision Tools</span>
+                            <span class="px-3 py-1 bg-gradient-to-r from-blue-100 to-cyan-100 dark:from-blue-900/50 dark:to-cyan-900/50 text-blue-700 dark:text-blue-300 rounded-full text-sm font-medium">Innovation</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Campus Building -->
+                <div class="gallery-item card overflow-hidden animate-on-scroll hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2" data-category="campus" style="animation-delay: 0.6s;">
+                    <div class="relative group overflow-hidden">
+                        <img src="https://i.ibb.co/NXL9mQW/Whats-App-Image-2025-08-13-at-23-20-21-1.jpg" 
+                             alt="Campus Building" 
+                             class="w-full h-72 object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-teal-600/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
+                        <div class="absolute bottom-0 left-0 right-0 p-6 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-500">
+                            <h4 class="font-bold text-lg mb-2">Main Campus</h4>
+                            <p class="text-sm opacity-90">Academic Excellence</p>
+                        </div>
+                        <div class="absolute top-4 right-4 w-12 h-12 bg-white/90 dark:bg-slate-800/90 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-4 group-hover:translate-x-0">
+                            <i class="fas fa-expand-alt text-teal-600 dark:text-teal-400"></i>
+                        </div>
+                    </div>
+                    <div class="p-6 bg-gradient-to-br from-white to-gray-50 dark:from-slate-800 dark:to-slate-700">
+                        <h3 class="text-xl font-bold mb-3 text-gray-900 dark:text-gray-100">Main Campus Building</h3>
+                        <p class="text-gray-600 dark:text-gray-400 leading-relaxed mb-4">
+                            Our stunning main campus building designed for optimal learning environment and student comfort.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-gradient-to-r from-teal-100 to-cyan-100 dark:from-teal-900/50 dark:to-cyan-900/50 text-teal-700 dark:text-teal-300 rounded-full text-sm font-medium">Modern Design</span>
+                            <span class="px-3 py-1 bg-gradient-to-r from-cyan-100 to-sky-100 dark:from-cyan-900/50 dark:to-sky-900/50 text-cyan-700 dark:text-cyan-300 rounded-full text-sm font-medium">Comfort</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Library & Study Areas -->
+                <div class="gallery-item card overflow-hidden animate-on-scroll hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2" data-category="facilities" style="animation-delay: 0.7s;">
+                    <div class="relative group overflow-hidden">
+                        <img src="https://iili.io/Fyxkm1p.md.jpg" 
+                             alt="Library and Study Areas" 
+                             class="w-full h-72 object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-violet-600/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
+                        <div class="absolute bottom-0 left-0 right-0 p-6 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-500">
+                            <h4 class="font-bold text-lg mb-2">Learning Spaces</h4>
+                            <p class="text-sm opacity-90">Quiet Study Environment</p>
+                        </div>
+                        <div class="absolute top-4 right-4 w-12 h-12 bg-white/90 dark:bg-slate-800/90 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-4 group-hover:translate-x-0">
+                            <i class="fas fa-expand-alt text-violet-600 dark:text-violet-400"></i>
+                        </div>
+                    </div>
+                    <div class="p-6 bg-gradient-to-br from-white to-gray-50 dark:from-slate-800 dark:to-slate-700">
+                        <h3 class="text-xl font-bold mb-3 text-gray-900 dark:text-gray-100">Library & Study Areas</h3>
+                        <p class="text-gray-600 dark:text-gray-400 leading-relaxed mb-4">
+                            Spacious library and dedicated study areas providing a conducive environment for research and learning.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-gradient-to-r from-violet-100 to-purple-100 dark:from-violet-900/50 dark:to-purple-900/50 text-violet-700 dark:text-violet-300 rounded-full text-sm font-medium">Quiet Zones</span>
+                            <span class="px-3 py-1 bg-gradient-to-r from-purple-100 to-fuchsia-100 dark:from-purple-900/50 dark:to-fuchsia-900/50 text-purple-700 dark:text-purple-300 rounded-full text-sm font-medium">Research Center</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sports & Recreation -->
+                <div class="gallery-item card overflow-hidden animate-on-scroll hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2" data-category="activities" style="animation-delay: 0.8s;">
+                    <div class="relative group overflow-hidden">
+                        <img src="https://iili.io/FtXNSGR.png" 
+                             alt="Sports and Recreation" 
+                             class="w-full h-72 object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-green-600/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
+                        <div class="absolute bottom-0 left-0 right-0 p-6 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-500">
+                            <h4 class="font-bold text-lg mb-2">Sports Complex</h4>
+                            <p class="text-sm opacity-90">Physical Fitness</p>
+                        </div>
+                        <div class="absolute top-4 right-4 w-12 h-12 bg-white/90 dark:bg-slate-800/90 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-4 group-hover:translate-x-0">
+                            <i class="fas fa-expand-alt text-green-600 dark:text-green-400"></i>
+                        </div>
+                    </div>
+                    <div class="p-6 bg-gradient-to-br from-white to-gray-50 dark:from-slate-800 dark:to-slate-700">
+                        <h3 class="text-xl font-bold mb-3 text-gray-900 dark:text-gray-100">Sports & Recreation</h3>
+                        <p class="text-gray-600 dark:text-gray-400 leading-relaxed mb-4">
+                            Comprehensive sports facilities promoting physical fitness, teamwork, and healthy competition among students.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-gradient-to-r from-green-100 to-emerald-100 dark:from-green-900/50 dark:to-emerald-900/50 text-green-700 dark:text-green-300 rounded-full text-sm font-medium">Multiple Sports</span>
+                            <span class="px-3 py-1 bg-gradient-to-r from-emerald-100 to-teal-100 dark:from-emerald-900/50 dark:to-teal-900/50 text-emerald-700 dark:text-emerald-300 rounded-full text-sm font-medium">Team Building</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- View More Button -->
+            <div class="text-center mt-16 animate-on-scroll">
+                <button class="btn-primary text-lg px-12 py-4 hover-glow">
+                    <i class="fas fa-plus mr-3"></i>
+                    View More Photos
+                </button>
             </div>
         </div>
     </section>
@@ -2086,7 +2270,7 @@
                              alt="DUFASHWENAYO Patrick" 
                              class="w-16 h-16 rounded-full object-cover border-4 border-green-500 hover:scale-110 transition-transform">
                         <div>
-                            <p class="text-white font-medium text-lg">DUFASHWENAYO Patrick</p>
+                            <p class="text-white font-medium text-lg">DUFASHWENAYO Patrick -DEVELOPER</p>
                             <p class="text-gray-400">TEL: +250783568044</p>
                         </div>
                     </div>
@@ -2262,6 +2446,52 @@
 
             resumeAutoPlay() {
                 this.isPaused = false;
+            }
+        }
+
+        // Gallery Filter System
+        class GalleryFilter {
+            constructor() {
+                this.filterButtons = document.querySelectorAll('.gallery-filter');
+                this.galleryItems = document.querySelectorAll('.gallery-item');
+                this.init();
+            }
+
+            init() {
+                this.filterButtons.forEach(button => {
+                    button.addEventListener('click', () => {
+                        const filter = button.getAttribute('data-filter');
+                        this.filterGallery(filter);
+                        this.updateActiveButton(button);
+                    });
+                });
+            }
+
+            filterGallery(filter) {
+                this.galleryItems.forEach((item, index) => {
+                    const category = item.getAttribute('data-category');
+                    
+                    setTimeout(() => {
+                        if (filter === 'all' || category === filter) {
+                            item.classList.remove('hidden');
+                            item.style.animationDelay = `${index * 0.1}s`;
+                        } else {
+                            item.classList.add('hidden');
+                        }
+                    }, index * 50);
+                });
+            }
+
+            updateActiveButton(activeButton) {
+                this.filterButtons.forEach(button => {
+                    button.classList.remove('active');
+                    button.classList.add('bg-white', 'dark:bg-slate-700', 'text-gray-700', 'dark:text-gray-300');
+                    button.classList.remove('bg-gradient-to-r', 'from-emerald-500', 'to-teal-500', 'text-white');
+                });
+
+                activeButton.classList.add('active');
+                activeButton.classList.remove('bg-white', 'dark:bg-slate-700', 'text-gray-700', 'dark:text-gray-300');
+                activeButton.classList.add('bg-gradient-to-r', 'from-emerald-500', 'to-teal-500', 'text-white');
             }
         }
 
@@ -2834,6 +3064,7 @@
                 initializeDarkMode();
                 new MobileMenu();
                 new ImageCarousel();
+                new GalleryFilter();
                 new ApplicationForm();
                 new CounterAnimation();
                 new SmoothScrolling();
@@ -2865,5 +3096,3 @@
     </script>
 </body>
 </html>
-
-
